@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Classification Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="classificationController" customModule="Pictionaire" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0ra-7m-KSS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H2v-0T-KGB">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g81-Td-QKR">
+                                <rect key="frame" x="176" y="322" width="22" height="22"/>
+                                <color key="tintColor" red="1" green="0.0" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="selectButtonWasClicked:" destination="BV1-FR-VrT" eventType="touchUpInside" id="iLS-PG-3Bf"/>
+                                </connections>
+                            </button>
+                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0TS-cr-Pfl">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Calculating..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lQU-U5-Tjc">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="DIZ-tI-QPE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="2Om-Lt-SVV"/>
+                                    <constraint firstItem="lQU-U5-Tjc" firstAttribute="leading" secondItem="0TS-cr-Pfl" secondAttribute="leading" id="f8m-kU-0vz"/>
+                                    <constraint firstItem="lQU-U5-Tjc" firstAttribute="top" secondItem="0TS-cr-Pfl" secondAttribute="top" id="mgh-ok-FR7"/>
+                                    <constraint firstAttribute="trailing" secondItem="lQU-U5-Tjc" secondAttribute="trailing" id="thF-3h-92w"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0TS-cr-Pfl" firstAttribute="leading" secondItem="4NK-IH-std" secondAttribute="leading" id="5Xu-QH-6Xq"/>
+                            <constraint firstItem="4NK-IH-std" firstAttribute="trailing" secondItem="g81-Td-QKR" secondAttribute="trailing" constant="177" id="HNX-s9-ar7"/>
+                            <constraint firstItem="4NK-IH-std" firstAttribute="bottom" secondItem="g81-Td-QKR" secondAttribute="bottom" constant="323" id="JEg-jZ-1ls"/>
+                            <constraint firstItem="H2v-0T-KGB" firstAttribute="bottom" secondItem="4NK-IH-std" secondAttribute="bottom" id="NFX-bJ-pXq"/>
+                            <constraint firstItem="0TS-cr-Pfl" firstAttribute="top" secondItem="0ra-7m-KSS" secondAttribute="top" id="O6T-zy-l61"/>
+                            <constraint firstItem="0TS-cr-Pfl" firstAttribute="trailing" secondItem="4NK-IH-std" secondAttribute="trailing" id="j4J-FR-9Gk"/>
+                            <constraint firstItem="H2v-0T-KGB" firstAttribute="top" secondItem="0ra-7m-KSS" secondAttribute="top" id="jkB-oe-mPN"/>
+                            <constraint firstItem="H2v-0T-KGB" firstAttribute="leading" secondItem="4NK-IH-std" secondAttribute="leading" id="lZV-xw-ydX"/>
+                            <constraint firstItem="g81-Td-QKR" firstAttribute="top" secondItem="0TS-cr-Pfl" secondAttribute="bottom" constant="242" id="oGq-gU-CpY"/>
+                            <constraint firstItem="H2v-0T-KGB" firstAttribute="trailing" secondItem="4NK-IH-std" secondAttribute="trailing" id="yh7-X6-CQj"/>
+                            <constraint firstItem="g81-Td-QKR" firstAttribute="leading" secondItem="4NK-IH-std" secondAttribute="leading" constant="176" id="zl3-JN-LOz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4NK-IH-std"/>
+                    </view>
+                    <connections>
+                        <outlet property="calculationTextView" destination="lQU-U5-Tjc" id="KKy-C9-VQS"/>
+                        <outlet property="sceneView" destination="H2v-0T-KGB" id="8es-Ox-fXZ"/>
+                        <outlet property="selectButton" destination="g81-Td-QKR" id="Gj6-ny-lWI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="58.920539730134934"/>
+        </scene>
+    </scenes>
+</document>
