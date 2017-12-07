@@ -86,6 +86,9 @@
                     </view>
                     <connections>
                         <outlet property="calculationTextView" destination="lQU-U5-Tjc" id="KKy-C9-VQS"/>
+                        <outlet property="leftTopBar" destination="K23-Yu-z5H" id="HnA-5X-K7V"/>
+                        <outlet property="midTopBar" destination="S4v-g4-S6u" id="Dzn-9K-Q8j"/>
+                        <outlet property="rightTopBar" destination="Yt5-xN-dMF" id="vjc-mp-uOn"/>
                         <outlet property="sceneView" destination="H2v-0T-KGB" id="8es-Ox-fXZ"/>
                         <outlet property="selectButton" destination="g81-Td-QKR" id="Gj6-ny-lWI"/>
                     </connections>

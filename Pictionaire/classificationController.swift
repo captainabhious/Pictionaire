@@ -17,15 +17,22 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
     @IBOutlet weak var sceneView: ARSCNView! // displays view of live camera feed where objs will be displayed
     
     
-
+    @IBOutlet weak var leftTopBar: UIView!
+    @IBOutlet weak var midTopBar: UIView!
+    @IBOutlet weak var rightTopBar: UIView!
     
-    let arTextDepth: Float = 0.01 // 3D text's depth
+    
+    //let arTextDepth: Float = 0.01 // 3D text's depth
     var latestPrediction: String = "Calculating..." // var holding most recent ML prediction
     
     var visionRequests = [VNCoreMLRequest]() // or try [VNRequest] ?
     let dispatchQueueML = DispatchQueue(label: "coreml.dispatchqueue")
     var configuration: ARWorldTrackingConfiguration!
     
+    // COLOR SCHEMES
+    let skyBlueColor = UIColor(red: 124.0/255.0, green: 200.0/255.0, blue: 239.0/255.0, alpha: 0.7)
+    let blueColor = UIColor(red: 56.0/255.0, green: 145.0/255.0, blue: 233.0/255.0, alpha: 0.4)
+    let grayColor = UIColor(red: 83.0/255.0, green: 83.0/255.0, blue: 83.0/255.0, alpha: 0.75)
 
     
     
@@ -53,21 +60,40 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let skyBlueColor = UIColor(red: 124.0/255.0, green: 200.0/255.0, blue: 239.0/255.0, alpha: 0.7)
-        let blueColor = UIColor(red: 56.0/255.0, green: 145.0/255.0, blue: 233.0/255.0, alpha: 0.4)
-        let blackColor = UIColor(red: 83.0/255.0, green: 83.0/255.0, blue: 83.0/255.0, alpha: 0.75)
         
+
+        
+
+//        let skyBlueColor = UIColor(red: 124.0/255.0, green: 200.0/255.0, blue: 239.0/255.0, alpha: 0.7)
+//        let blueColor = UIColor(red: 56.0/255.0, green: 145.0/255.0, blue: 233.0/255.0, alpha: 0.4)
+//        let blackColor = UIColor(red: 83.0/255.0, green: 83.0/255.0, blue: 83.0/255.0, alpha: 0.75)
+//
 //        topBar.backgroundColor = skyBlueColor
 //        topBar.layer.cornerRadius = 6.0
 //
-//        
+//
 //        topBar.layer.shadowColor = UIColor.black.cgColor
 //        topBar.layer.shadowOffset = CGSize(width: 0, height: 10)
 //        topBar.layer.shadowOpacity = 0.5
 //        topBar.layer.shadowRadius = 5
 //        topBar.clipsToBounds = false
 //        topBar.layer.masksToBounds = false
+        
+        
+        
+        enum Colors {
+            case skyBlueCor
+        }
+
+            
+
+        
+        
+//
+//
+//
+//        bar.backgroundColor = skyBlueColor
+        
         
         // set the view's delegate
         sceneView.delegate = self
@@ -112,10 +138,22 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
         
         loopCoreMLUpdate()
         
-        //setUpMenuBar()
+
+        
+        // TOP BAR COLOR & DESIGN EDITS
+        leftTopBar.backgroundColor = skyBlueColor
+        midTopBar.backgroundColor = blueColor
+        rightTopBar.backgroundColor = skyBlueColor
+        // !: result of call unused?
+        shadowEdits(leftTopBar)
+        shadowEdits(midTopBar)
+        shadowEdits(rightTopBar)
         
 
+
     }
+    
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -233,6 +271,39 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
         }
         
     }
+    
+    
+    func shadowEdits (_ bar: UIView) /*-> UIView*/ {
+        
+        bar.layer.cornerRadius = 6.0
+        bar.layer.shadowColor = UIColor.black.cgColor
+        bar.layer.shadowOffset = CGSize(width: 0, height: 10)
+        bar.layer.shadowOpacity = 0.5
+        bar.layer.shadowRadius = 5
+        bar.clipsToBounds = false
+        bar.layer.masksToBounds = false
+        
+      //  return bar
+        
+    }
+    
+   /*
+    func viewBackgroundColor (_ yourView: UIView, _ theColor: String) {
+        
+        let skyBlueColor = UIColor(red: 124.0/255.0, green: 200.0/255.0, blue: 239.0/255.0, alpha: 0.7)
+        let blueColor = UIColor(red: 56.0/255.0, green: 145.0/255.0, blue: 233.0/255.0, alpha: 0.4)
+        let blackColor = UIColor(red: 83.0/255.0, green: 83.0/255.0, blue: 83.0/255.0, alpha: 0.75)
+        
+        
+        yourView.backgroundColor = desiredColor
+        
+        
+    }
+    */
+    
+    
+    
+    
     
 
     let menuBar: MenuBar = {
