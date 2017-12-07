@@ -22,6 +22,23 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
     @IBOutlet weak var rightTopBar: UIView!
     
     
+    // Updating UI elements with top 2 predictions:
+    @IBOutlet weak var firstPredictionButton: UIButton!
+    @IBOutlet weak var firstPredictionConfidenceLabel: UILabel!
+    
+    @IBOutlet weak var secondPredictionButton: UIButton!
+    @IBOutlet weak var secondPredictionConfidenceLabel: UILabel!
+    
+    // Prediction Buttons Clicked:
+    @IBAction func firstPredictionButtonClicked(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func secondPredictionButtonClicked(_ sender: UIButton) {
+        
+    }
+    
+    
     //let arTextDepth: Float = 0.01 // 3D text's depth
     var latestPrediction: String = "Calculating..." // var holding most recent ML prediction
     
@@ -31,7 +48,7 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
     
     // COLOR SCHEMES
     let skyBlueColor = UIColor(red: 124.0/255.0, green: 200.0/255.0, blue: 239.0/255.0, alpha: 0.7)
-    let blueColor = UIColor(red: 56.0/255.0, green: 145.0/255.0, blue: 233.0/255.0, alpha: 0.4)
+    let blueColor = UIColor(red: 56.0/255.0, green: 145.0/255.0, blue: 233.0/255.0, alpha: 0.8)
     let grayColor = UIColor(red: 83.0/255.0, green: 83.0/255.0, blue: 83.0/255.0, alpha: 0.75)
 
     
@@ -138,7 +155,6 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
         
         loopCoreMLUpdate()
         
-
         
         // TOP BAR COLOR & DESIGN EDITS
         leftTopBar.backgroundColor = skyBlueColor
@@ -242,9 +258,23 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
             // Print Classifications
             print(classifications)
             print("--")
-
+            
+            let predictOne = classifications[0].identifier
+            let confidenceOneDouble = Double((classifications[0].confidence)*100).rounded(toPlaces: 2)
+            let confidenceOneString = String(confidenceOneDouble)
+            let predictTwo = classifications[1].identifier
+            let confidenceTwoDouble = Double((classifications[1].confidence)*100).rounded(toPlaces: 2)
+            let confidenceTwoString = String(confidenceTwoDouble)
+            
             // set cell 1's observation button to classifications[0].identifier =============
             self.calculationTextView.text = classifications[0].identifier
+            
+            self.firstPredictionButton.setTitle(predictOne, for: .normal)
+            self.firstPredictionConfidenceLabel.text = "\(confidenceOneString)%"
+            
+            self.secondPredictionButton.setTitle(predictTwo, for: .normal)
+            self.secondPredictionConfidenceLabel.text = "\(confidenceTwoString)%"
+            
             // set cell 1's confidence label to classifications[0].confidence * convert properly
             
         }
@@ -381,5 +411,13 @@ extension UIView {
         
         
         
+    }
+}
+
+extension Double {
+    /// Rounds the double to decimal places value
+    func rounded(toPlaces places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
     }
 }

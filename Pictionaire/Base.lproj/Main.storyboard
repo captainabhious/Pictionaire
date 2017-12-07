@@ -28,8 +28,69 @@
                                     <action selector="selectButtonWasClicked:" destination="BV1-FR-VrT" eventType="touchUpInside" id="iLS-PG-3Bf"/>
                                 </connections>
                             </button>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K23-Yu-z5H">
+                                <rect key="frame" x="0.0" y="0.0" width="138" height="150"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Cdk-SK-X7e">
+                                        <rect key="frame" x="8" y="28" width="122" height="82"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <state key="normal" title="Prediction 1">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="firstPredictionButtonClicked:" destination="BV1-FR-VrT" eventType="touchUpInside" id="cwv-o1-fm4"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confidence %" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fzp-tZ-BIn">
+                                        <rect key="frame" x="8" y="121" width="122" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="G24-yN-cAL"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S4v-g4-S6u">
+                                <rect key="frame" x="138" y="0.0" width="99" height="150"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="K9i-zE-uJx"/>
+                                </constraints>
+                            </view>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yt5-xN-dMF">
+                                <rect key="frame" x="237" y="0.0" width="138" height="150"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="qZY-uf-NMa">
+                                        <rect key="frame" x="8" y="28" width="122" height="79"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <state key="normal" title="Prediction 2">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="secondPredictionButtonClicked:" destination="BV1-FR-VrT" eventType="touchUpInside" id="G7k-Gp-lI6"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confidence %" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3x-rU-VCY">
+                                        <rect key="frame" x="12" y="121" width="122" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="PD7-Xf-Rwu"/>
+                                </constraints>
+                            </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Calculating..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lQU-U5-Tjc">
-                                <rect key="frame" x="0.0" y="362" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="529" width="375" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="DIZ-tI-QPE"/>
@@ -38,33 +99,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K23-Yu-z5H">
-                                <rect key="frame" x="0.0" y="0.0" width="125" height="130"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="G24-yN-cAL"/>
-                                </constraints>
-                            </view>
-                            <view alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S4v-g4-S6u">
-                                <rect key="frame" x="125" y="0.0" width="125" height="130"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="K9i-zE-uJx"/>
-                                </constraints>
-                            </view>
-                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yt5-xN-dMF">
-                                <rect key="frame" x="250" y="0.0" width="125" height="130"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="PD7-Xf-Rwu"/>
-                                </constraints>
-                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EdN-Ih-Hl5">
+                                <rect key="frame" x="0.0" y="158" width="135" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="lQU-U5-Tjc" firstAttribute="leading" secondItem="0ra-7m-KSS" secondAttribute="leading" id="4a1-m0-O14"/>
                             <constraint firstItem="Yt5-xN-dMF" firstAttribute="leading" secondItem="S4v-g4-S6u" secondAttribute="trailing" id="9em-Ua-U1S"/>
-                            <constraint firstItem="S4v-g4-S6u" firstAttribute="centerX" secondItem="g81-Td-QKR" secondAttribute="centerX" id="A1r-I8-4FE"/>
+                            <constraint firstItem="S4v-g4-S6u" firstAttribute="centerX" secondItem="g81-Td-QKR" secondAttribute="centerX" constant="0.5" id="A1r-I8-4FE"/>
                             <constraint firstItem="4NK-IH-std" firstAttribute="trailing" secondItem="g81-Td-QKR" secondAttribute="trailing" constant="177" id="HNX-s9-ar7"/>
                             <constraint firstItem="4NK-IH-std" firstAttribute="bottom" secondItem="g81-Td-QKR" secondAttribute="bottom" constant="323" id="JEg-jZ-1ls"/>
                             <constraint firstItem="H2v-0T-KGB" firstAttribute="bottom" secondItem="4NK-IH-std" secondAttribute="bottom" id="NFX-bJ-pXq"/>
@@ -72,9 +120,9 @@
                             <constraint firstItem="S4v-g4-S6u" firstAttribute="top" secondItem="0ra-7m-KSS" secondAttribute="top" id="gsZ-g7-44e"/>
                             <constraint firstAttribute="trailing" secondItem="lQU-U5-Tjc" secondAttribute="trailing" id="i6a-3h-5eh"/>
                             <constraint firstItem="H2v-0T-KGB" firstAttribute="top" secondItem="0ra-7m-KSS" secondAttribute="top" id="jkB-oe-mPN"/>
-                            <constraint firstItem="K23-Yu-z5H" firstAttribute="width" secondItem="S4v-g4-S6u" secondAttribute="width" id="jkR-GI-znH"/>
+                            <constraint firstItem="K23-Yu-z5H" firstAttribute="width" secondItem="S4v-g4-S6u" secondAttribute="width" constant="39" id="jkR-GI-znH"/>
                             <constraint firstItem="K23-Yu-z5H" firstAttribute="top" secondItem="0ra-7m-KSS" secondAttribute="top" id="lMM-vx-dVc"/>
-                            <constraint firstItem="lQU-U5-Tjc" firstAttribute="top" secondItem="0ra-7m-KSS" secondAttribute="top" constant="362" id="lOO-Ac-3UL"/>
+                            <constraint firstItem="lQU-U5-Tjc" firstAttribute="top" secondItem="0ra-7m-KSS" secondAttribute="top" constant="529" id="lOO-Ac-3UL"/>
                             <constraint firstItem="H2v-0T-KGB" firstAttribute="leading" secondItem="4NK-IH-std" secondAttribute="leading" id="lZV-xw-ydX"/>
                             <constraint firstItem="K23-Yu-z5H" firstAttribute="leading" secondItem="4NK-IH-std" secondAttribute="leading" id="lkW-gp-PcO"/>
                             <constraint firstItem="Yt5-xN-dMF" firstAttribute="trailing" secondItem="4NK-IH-std" secondAttribute="trailing" id="pmV-fZ-3Hb"/>
@@ -86,10 +134,14 @@
                     </view>
                     <connections>
                         <outlet property="calculationTextView" destination="lQU-U5-Tjc" id="KKy-C9-VQS"/>
+                        <outlet property="firstPredictionButton" destination="Cdk-SK-X7e" id="C0q-xg-VrG"/>
+                        <outlet property="firstPredictionConfidenceLabel" destination="Fzp-tZ-BIn" id="1I2-xM-rvi"/>
                         <outlet property="leftTopBar" destination="K23-Yu-z5H" id="HnA-5X-K7V"/>
                         <outlet property="midTopBar" destination="S4v-g4-S6u" id="Dzn-9K-Q8j"/>
                         <outlet property="rightTopBar" destination="Yt5-xN-dMF" id="vjc-mp-uOn"/>
                         <outlet property="sceneView" destination="H2v-0T-KGB" id="8es-Ox-fXZ"/>
+                        <outlet property="secondPredictionButton" destination="qZY-uf-NMa" id="rjs-mC-F4S"/>
+                        <outlet property="secondPredictionConfidenceLabel" destination="A3x-rU-VCY" id="QRC-GI-KK0"/>
                         <outlet property="selectButton" destination="g81-Td-QKR" id="Gj6-ny-lWI"/>
                     </connections>
                 </viewController>
