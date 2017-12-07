@@ -29,7 +29,7 @@
                                 </connections>
                             </button>
                             <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0TS-cr-Pfl">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="248" width="375" height="80"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Calculating..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lQU-U5-Tjc">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -37,6 +37,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="DIZ-tI-QPE"/>
                                         </constraints>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -56,11 +57,11 @@
                             <constraint firstItem="4NK-IH-std" firstAttribute="trailing" secondItem="g81-Td-QKR" secondAttribute="trailing" constant="177" id="HNX-s9-ar7"/>
                             <constraint firstItem="4NK-IH-std" firstAttribute="bottom" secondItem="g81-Td-QKR" secondAttribute="bottom" constant="323" id="JEg-jZ-1ls"/>
                             <constraint firstItem="H2v-0T-KGB" firstAttribute="bottom" secondItem="4NK-IH-std" secondAttribute="bottom" id="NFX-bJ-pXq"/>
-                            <constraint firstItem="0TS-cr-Pfl" firstAttribute="top" secondItem="0ra-7m-KSS" secondAttribute="top" id="O6T-zy-l61"/>
+                            <constraint firstItem="0TS-cr-Pfl" firstAttribute="top" secondItem="0ra-7m-KSS" secondAttribute="top" constant="248" id="O6T-zy-l61"/>
                             <constraint firstItem="0TS-cr-Pfl" firstAttribute="trailing" secondItem="4NK-IH-std" secondAttribute="trailing" id="j4J-FR-9Gk"/>
                             <constraint firstItem="H2v-0T-KGB" firstAttribute="top" secondItem="0ra-7m-KSS" secondAttribute="top" id="jkB-oe-mPN"/>
                             <constraint firstItem="H2v-0T-KGB" firstAttribute="leading" secondItem="4NK-IH-std" secondAttribute="leading" id="lZV-xw-ydX"/>
-                            <constraint firstItem="g81-Td-QKR" firstAttribute="top" secondItem="0TS-cr-Pfl" secondAttribute="bottom" constant="242" id="oGq-gU-CpY"/>
+                            <constraint firstItem="g81-Td-QKR" firstAttribute="top" secondItem="0TS-cr-Pfl" secondAttribute="bottom" constant="-6" id="oGq-gU-CpY"/>
                             <constraint firstItem="H2v-0T-KGB" firstAttribute="trailing" secondItem="4NK-IH-std" secondAttribute="trailing" id="yh7-X6-CQj"/>
                             <constraint firstItem="g81-Td-QKR" firstAttribute="leading" secondItem="4NK-IH-std" secondAttribute="leading" constant="176" id="zl3-JN-LOz"/>
                         </constraints>

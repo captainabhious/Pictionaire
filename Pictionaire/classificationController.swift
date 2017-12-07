@@ -11,7 +11,8 @@ import SceneKit // used for developing 3D objs
 import ARKit // used for placing those 3D objs into real-world surroundings
 import Vision
 
-class classificationController: UIViewController, ARSCNViewDelegate {
+
+class classificationController: UIViewController, ARSCNViewDelegate/*, UICollectionViewDelegateFlowLayout */{
 
     @IBOutlet weak var sceneView: ARSCNView! // displays view of live camera feed where objs will be displayed
     
@@ -46,8 +47,7 @@ class classificationController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
         // set the view's delegate
         sceneView.delegate = self
         
@@ -222,6 +222,9 @@ class classificationController: UIViewController, ARSCNViewDelegate {
     private func setUpMenuBar() {
         menuBar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(menuBar)
+       // menuBar.alpha = 1.0
+        
+
         
         
         let menuBarHorizontalConstraint = NSLayoutConstraint(item: menuBar, attribute: NSLayoutAttribute.trailing , relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
@@ -266,6 +269,24 @@ class classificationController: UIViewController, ARSCNViewDelegate {
     
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
+        
+    }
+}
+
+extension UIView {
+    func addConstraintsWithFormat(format: String, views: UIView...) {
+        
+        var viewsDictionary = [String: UIView]()
+        
+        for (index, view) in views.enumerated() {
+            let key = "v\(index)"
+            view.translatesAutoresizingMaskIntoConstraints = false
+            viewsDictionary[key] = view
+        }
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
+        
+        
         
     }
 }
