@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7D88EE121FD6C2DA005D3D91 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EE111FD6C2DA005D3D91 /* Inceptionv3.mlmodel */; };
 		7D88EE141FD6C4A8005D3D91 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EE131FD6C4A8005D3D91 /* UIButtonExtension.swift */; };
+		7D8E60F21FD7D85E002D6ACD /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E60F11FD7D85E002D6ACD /* MenuBar.swift */; };
 		7D8F3EEE1FD5CE4C00805F40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8F3EED1FD5CE4C00805F40 /* AppDelegate.swift */; };
 		7D8F3EF01FD5CE4C00805F40 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D8F3EEF1FD5CE4C00805F40 /* art.scnassets */; };
 		7D8F3EF21FD5CE4C00805F40 /* classificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8F3EF11FD5CE4C00805F40 /* classificationController.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		7D88EE111FD6C2DA005D3D91 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		7D88EE131FD6C4A8005D3D91 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		7D8E60F11FD7D85E002D6ACD /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		7D8F3EEA1FD5CE4C00805F40 /* Pictionaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pictionaire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D8F3EED1FD5CE4C00805F40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D8F3EEF1FD5CE4C00805F40 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				7D8F3EF11FD5CE4C00805F40 /* classificationController.swift */,
 				7D8F3EF31FD5CE4C00805F40 /* Main.storyboard */,
 				7D88EE131FD6C4A8005D3D91 /* UIButtonExtension.swift */,
+				7D8E60F11FD7D85E002D6ACD /* MenuBar.swift */,
 				7D8F3EEF1FD5CE4C00805F40 /* art.scnassets */,
 				7D8F3EF61FD5CE4C00805F40 /* Assets.xcassets */,
 				7D8F3EF81FD5CE4C00805F40 /* LaunchScreen.storyboard */,
@@ -151,6 +154,7 @@
 			files = (
 				7D8F3EF21FD5CE4C00805F40 /* classificationController.swift in Sources */,
 				7D88EE141FD6C4A8005D3D91 /* UIButtonExtension.swift in Sources */,
+				7D8E60F21FD7D85E002D6ACD /* MenuBar.swift in Sources */,
 				7D88EE121FD6C2DA005D3D91 /* Inceptionv3.mlmodel in Sources */,
 				7D8F3F021FD5EE0B00805F40 /* Resnet50.mlmodel in Sources */,
 				7D8F3EEE1FD5CE4C00805F40 /* AppDelegate.swift in Sources */,

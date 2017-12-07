@@ -90,6 +90,8 @@ class classificationController: UIViewController, ARSCNViewDelegate {
         selectButton.loadPulse()
         
         loopCoreMLUpdate()
+        
+        setUpMenuBar()
 
     }
     
@@ -211,6 +213,33 @@ class classificationController: UIViewController, ARSCNViewDelegate {
     }
     
 
+    let menuBar: MenuBar = {
+        let mb = MenuBar()
+        return mb
+    }()
+    
+    // no other class should have access to menu bar
+    private func setUpMenuBar() {
+        menuBar.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(menuBar)
+        
+        
+        let menuBarHorizontalConstraint = NSLayoutConstraint(item: menuBar, attribute: NSLayoutAttribute.trailing , relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
+        
+        let menuBarVerticalConstraint = NSLayoutConstraint(item: menuBar, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)
+        
+        let menuBarTopConstraint = NSLayoutConstraint(item: menuBar, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)
+
+        
+        let menuBarWidthConstraint = NSLayoutConstraint(item: menuBar, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 375)
+        
+        let menuBarHeightConstraint = NSLayoutConstraint(item: menuBar, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 122)
+        
+        NSLayoutConstraint.activate([menuBarHorizontalConstraint, menuBarVerticalConstraint, menuBarTopConstraint, menuBarWidthConstraint, menuBarHeightConstraint])
+
+        
+        
+    }
     
     
     
