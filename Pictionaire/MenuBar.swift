@@ -22,7 +22,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         // let endingColorOFGradient = UIColor(red: 56.0/255.0, green: 145.0/255.0, blue: 233.0/255.0, alpha: 0.6).cgColor
         
         cv.backgroundColor = skyBlueColor
-        cv.layer.cornerRadius = 6.5
+        cv.layer.cornerRadius = 6.0
         // cv.contentInset = UIEdgeInsetsMake(0, 0, 200, 0) - moves content up/down/left/right by pixels
         // not working b/c cv's frame: .zero (not initialized)
         cv.isScrollEnabled = false
@@ -67,7 +67,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         
-        cell.backgroundColor = UIColor.blue
+        //cell.backgroundColor = UIColor.blue
         cell.layer.cornerRadius = 6.5
         cell.layer.masksToBounds = true
        
@@ -78,7 +78,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     // size of each cell = 1/3(view frame's width); height: entire frame height
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
        // print("========== this da frame height: \(frame.height)============")
-        return CGSize(width: frame.width / 3, height: frame.height + 5.0)
+        return CGSize(width: frame.width / 3, height: frame.height)
         
         // !: spacing issues pushes last cell down
         // fix: minInteritemSpacing func below

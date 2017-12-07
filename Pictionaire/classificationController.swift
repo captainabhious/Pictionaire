@@ -16,6 +16,9 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
 
     @IBOutlet weak var sceneView: ARSCNView! // displays view of live camera feed where objs will be displayed
     
+    
+
+    
     let arTextDepth: Float = 0.01 // 3D text's depth
     var latestPrediction: String = "Calculating..." // var holding most recent ML prediction
     
@@ -24,6 +27,9 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
     var configuration: ARWorldTrackingConfiguration!
     
 
+    
+    
+    
     @IBOutlet weak var calculationTextView: UITextView!
 
     // reminder: update shitty logic for toggling sesh - pause/resume
@@ -48,6 +54,21 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let skyBlueColor = UIColor(red: 124.0/255.0, green: 200.0/255.0, blue: 239.0/255.0, alpha: 0.7)
+        let blueColor = UIColor(red: 56.0/255.0, green: 145.0/255.0, blue: 233.0/255.0, alpha: 0.4)
+        let blackColor = UIColor(red: 83.0/255.0, green: 83.0/255.0, blue: 83.0/255.0, alpha: 0.75)
+        
+//        topBar.backgroundColor = skyBlueColor
+//        topBar.layer.cornerRadius = 6.0
+//
+//        
+//        topBar.layer.shadowColor = UIColor.black.cgColor
+//        topBar.layer.shadowOffset = CGSize(width: 0, height: 10)
+//        topBar.layer.shadowOpacity = 0.5
+//        topBar.layer.shadowRadius = 5
+//        topBar.clipsToBounds = false
+//        topBar.layer.masksToBounds = false
+        
         // set the view's delegate
         sceneView.delegate = self
         
@@ -91,7 +112,8 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
         
         loopCoreMLUpdate()
         
-        setUpMenuBar()
+        //setUpMenuBar()
+        
 
     }
     
