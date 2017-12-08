@@ -21,7 +21,8 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     
     @IBOutlet weak var flagLang: UIImageView!
     
-    @IBOutlet weak var leftTopBarImage: UIImageView!
+    
+    @IBOutlet weak var bottomBar: UIView!
     
     @IBOutlet weak var leftTopBar: UIView!
     @IBOutlet weak var midTopBar: UIView!
@@ -96,7 +97,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
             pickerLabel?.textAlignment = .center
         }
         pickerLabel?.text = availLangs[row]
-        pickerLabel?.textColor = UIColor.blue
+        pickerLabel?.textColor = UIColor.white
         
         return pickerLabel!
         
@@ -210,7 +211,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
 
 
         let classificationRequest = VNCoreMLRequest(model: model, completionHandler: classificationCompleteHandler)
-       // classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop // crop from centre of images and scale
+        classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop // crop from centre of images and scale
         visionRequests = [classificationRequest]
         
         
@@ -231,10 +232,16 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
        // midTopBar.backgroundColor = blueColor
       //  rightTopBar.backgroundColor = blueColor
         // !: result of call unused?
-        shadowEdits(leftTopBar)
-        shadowEdits(midTopBar)
-        shadowEdits(rightTopBar)
-        
+        shadowEdits(leftTopBar, crnRad: 6.0)
+        shadowEdits(midTopBar, crnRad: 6.0)
+        shadowEdits(rightTopBar, crnRad: 6.0)
+        calculationTextView.alpha = 0.83
+        shadowEdits(calculationTextView, crnRad: 13.0)
+
+        shadowEdits(bottomBar, crnRad: 6.0)
+
+        view.sendSubview(toBack: calculationTextView)
+
         flagLang.image = UIImage(named: "world.png")
 
 
@@ -379,9 +386,11 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     }
     
     
-    func shadowEdits (_ bar: UIView) /*-> UIView*/ {
+    func shadowEdits (_ bar: UIView, crnRad cRad: CGFloat) {
         
-        bar.layer.cornerRadius = 6.0
+        bar.layer.cornerRadius = cRad
+        
+        
         bar.layer.shadowColor = UIColor.black.cgColor
         bar.layer.shadowOffset = CGSize(width: 6, height: 10)
         bar.layer.shadowOpacity = 0.5
@@ -389,7 +398,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         bar.clipsToBounds = false
         bar.layer.masksToBounds = false
         
-      //  return bar
+        //  return bar
         
     }
     
