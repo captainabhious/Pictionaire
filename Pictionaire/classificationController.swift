@@ -10,9 +10,11 @@ import UIKit
 import SceneKit // used for developing 3D objs
 import ARKit // used for placing those 3D objs into real-world surroundings
 import Vision
+import ROGoogleTranslate
 
 
 class classificationController: UIViewController, ARSCNViewDelegate/*, UICollectionViewDelegateFlowLayout */{
+
 
     @IBOutlet weak var sceneView: ARSCNView! // displays view of live camera feed where objs will be displayed
     
@@ -20,6 +22,12 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
     @IBOutlet weak var leftTopBar: UIView!
     @IBOutlet weak var midTopBar: UIView!
     @IBOutlet weak var rightTopBar: UIView!
+    
+    //
+    var textToTranslate = TheOneAndOnlyObservation.sharedInstance.observation1
+    var fromLang = "en"
+    var toLang = "es"
+    var translatedText = ""
     
     
     // Updating UI elements with top 2 predictions:
@@ -32,7 +40,65 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
     // Prediction Buttons Clicked:
     @IBAction func firstPredictionButtonClicked(_ sender: UIButton) {
         
+        /*
+        var params = ROGoogleTranslateParams(source: "en",
+                                             target: "de",
+                                             text:   "Here you can add your sentence you want to be translated")
+        
+        let translator = ROGoogleTranslate()
+       
+
+        
+        translator.translate(params: params) { (result) in
+            DispatchQueue.main.async {
+                self.translatedText = "\(result)"
+                print("====------=========----------==++!\(self.translatedText)====------======++")
+            }
+        }
+     */
+        translationReq()
+        
     }
+    
+ 
+    
+    func translationReq () {
+        
+        print("===19034850193824==\(firstPredictionButton.titleLabel?.text)=====1239048123409")
+        
+        var params = ROGoogleTranslateParams(source: fromLang,
+                                             target: toLang,
+                                             text:   (firstPredictionButton.titleLabel?.text)!)
+        
+        let translator = ROGoogleTranslate()
+       // translator.apiKey = "AIzaSyALg1aHfloWe00knnfsfhV9HFEB9ikEmBw" // Add your API Key here
+        
+//        var params = ROGoogleTranslateParams()
+//        params.source = fromLang/*.text ?? "en"*/
+//        print(params.source)
+//        params.target = toLang/*.text ?? "de"*/
+//        print(params.target)
+//        params.text = textToTranslate/*.text ?? "The textfield is empty"*/
+//        print(params.text)
+        
+        translator.translate(params: params) { (result) in
+            DispatchQueue.main.async {
+                self.translatedText = "\(result)"
+                print("======================!\(self.translatedText)!=============")
+                self.calculationTextView.text = "\(result)"
+                
+                
+                
+                //  self.calculationTextView.text = classifications[0].identifier
+                
+                
+            }
+        }
+        
+    }
+    
+    
+    
     
     @IBAction func secondPredictionButtonClicked(_ sender: UIButton) {
         
@@ -98,12 +164,13 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
         
         
         
-        enum Colors {
-            case skyBlueCor
-        }
+//        enum Colors {
+//            case skyBlueCor
+//        }
 
             
 
+        //translationReq()
         
         
 //
@@ -266,8 +333,13 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
             let confidenceTwoDouble = Double((classifications[1].confidence)*100).rounded(toPlaces: 2)
             let confidenceTwoString = String(confidenceTwoDouble)
             
+            TheOneAndOnlyObservation.sharedInstance.observation1 = predictOne
+            TheTwoAndOnlyObservation.sharedInstance.observation2 = predictTwo
+            
+            
+            
             // set cell 1's observation button to classifications[0].identifier =============
-            self.calculationTextView.text = classifications[0].identifier
+          //  self.calculationTextView.text = classifications[0].identifier
             
             self.firstPredictionButton.setTitle(predictOne, for: .normal)
             self.firstPredictionConfidenceLabel.text = "\(confidenceOneString)%"
@@ -307,7 +379,7 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
         
         bar.layer.cornerRadius = 6.0
         bar.layer.shadowColor = UIColor.black.cgColor
-        bar.layer.shadowOffset = CGSize(width: 0, height: 10)
+        bar.layer.shadowOffset = CGSize(width: 6, height: 10)
         bar.layer.shadowOpacity = 0.5
         bar.layer.shadowRadius = 5
         bar.clipsToBounds = false

@@ -17,9 +17,14 @@
 		7D8F3EF71FD5CE4C00805F40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D8F3EF61FD5CE4C00805F40 /* Assets.xcassets */; };
 		7D8F3EFA1FD5CE4C00805F40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D8F3EF81FD5CE4C00805F40 /* LaunchScreen.storyboard */; };
 		7D8F3F021FD5EE0B00805F40 /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7D8F3F011FD5EE0B00805F40 /* Resnet50.mlmodel */; };
+		7DBB3A7D1FDA27140061AD42 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBB3A7C1FDA27140061AD42 /* GlobalVariables.swift */; };
+		7DE368C31FDA0D300072D23A /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE368C21FDA0D300072D23A /* Translation.swift */; };
+		CBBECB575D4C290C0FA74161 /* Pods_Pictionaire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB761E36200AFEF371644CD /* Pods_Pictionaire.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3FB761E36200AFEF371644CD /* Pods_Pictionaire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pictionaire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C1273D8A40D803063D3434C /* Pods-Pictionaire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictionaire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pictionaire/Pods-Pictionaire.debug.xcconfig"; sourceTree = "<group>"; };
 		7D88EE111FD6C2DA005D3D91 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		7D88EE131FD6C4A8005D3D91 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		7D8E60F11FD7D85E002D6ACD /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
@@ -32,6 +37,9 @@
 		7D8F3EF91FD5CE4C00805F40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D8F3EFB1FD5CE4C00805F40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D8F3F011FD5EE0B00805F40 /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
+		7DBB3A7C1FDA27140061AD42 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		7DE368C21FDA0D300072D23A /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
+		A41CAEEC691F4D9870BAD47B /* Pods-Pictionaire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictionaire.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pictionaire/Pods-Pictionaire.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +47,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBBECB575D4C290C0FA74161 /* Pods_Pictionaire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10C4967201DFA038F361C4C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3FB761E36200AFEF371644CD /* Pods_Pictionaire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7D8F3EE11FD5CE4C00805F40 = {
 			isa = PBXGroup;
 			children = (
 				7D8F3EEC1FD5CE4C00805F40 /* Pictionaire */,
 				7D8F3EEB1FD5CE4C00805F40 /* Products */,
+				DEBEEA9B97F9E97BE0460350 /* Pods */,
+				10C4967201DFA038F361C4C4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +86,8 @@
 				7D8F3EED1FD5CE4C00805F40 /* AppDelegate.swift */,
 				7D8F3EF31FD5CE4C00805F40 /* Main.storyboard */,
 				7D8F3EF11FD5CE4C00805F40 /* classificationController.swift */,
+				7DBB3A7C1FDA27140061AD42 /* GlobalVariables.swift */,
+				7DE368C21FDA0D300072D23A /* Translation.swift */,
 				7D8E60F11FD7D85E002D6ACD /* MenuBar.swift */,
 				7D88EE131FD6C4A8005D3D91 /* UIButtonExtension.swift */,
 				7D8F3EEF1FD5CE4C00805F40 /* art.scnassets */,
@@ -79,6 +100,15 @@
 			path = Pictionaire;
 			sourceTree = "<group>";
 		};
+		DEBEEA9B97F9E97BE0460350 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7C1273D8A40D803063D3434C /* Pods-Pictionaire.debug.xcconfig */,
+				A41CAEEC691F4D9870BAD47B /* Pods-Pictionaire.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +116,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7D8F3EFE1FD5CE4C00805F40 /* Build configuration list for PBXNativeTarget "Pictionaire" */;
 			buildPhases = (
+				6ADE1772625241AE9053B142 /* [CP] Check Pods Manifest.lock */,
 				7D8F3EE61FD5CE4C00805F40 /* Sources */,
 				7D8F3EE71FD5CE4C00805F40 /* Frameworks */,
 				7D8F3EE81FD5CE4C00805F40 /* Resources */,
+				8A6BAE9972C37DE0E4060502 /* [CP] Embed Pods Frameworks */,
+				DC240B5FD36D963F303D42B6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -147,6 +180,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6ADE1772625241AE9053B142 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pictionaire-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A6BAE9972C37DE0E4060502 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Pictionaire/Pods-Pictionaire-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ROGoogleTranslate/ROGoogleTranslate.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ROGoogleTranslate.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pictionaire/Pods-Pictionaire-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC240B5FD36D963F303D42B6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pictionaire/Pods-Pictionaire-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7D8F3EE61FD5CE4C00805F40 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -154,8 +241,10 @@
 			files = (
 				7D8F3EF21FD5CE4C00805F40 /* classificationController.swift in Sources */,
 				7D88EE141FD6C4A8005D3D91 /* UIButtonExtension.swift in Sources */,
+				7DBB3A7D1FDA27140061AD42 /* GlobalVariables.swift in Sources */,
 				7D8E60F21FD7D85E002D6ACD /* MenuBar.swift in Sources */,
 				7D88EE121FD6C2DA005D3D91 /* Inceptionv3.mlmodel in Sources */,
+				7DE368C31FDA0D300072D23A /* Translation.swift in Sources */,
 				7D8F3F021FD5EE0B00805F40 /* Resnet50.mlmodel in Sources */,
 				7D8F3EEE1FD5CE4C00805F40 /* AppDelegate.swift in Sources */,
 			);
@@ -292,6 +381,7 @@
 		};
 		7D8F3EFF1FD5CE4C00805F40 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C1273D8A40D803063D3434C /* Pods-Pictionaire.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -308,6 +398,7 @@
 		};
 		7D8F3F001FD5CE4C00805F40 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A41CAEEC691F4D9870BAD47B /* Pods-Pictionaire.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
