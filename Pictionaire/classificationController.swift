@@ -20,7 +20,8 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     @IBOutlet weak var sceneView: ARSCNView! // displays view of live camera feed where objs will be displayed
     
     @IBOutlet weak var flagLang: UIImageView!
-    var availLangs = ["Chinese", "Danish", "German", "Hindi", "Spanish"]
+    
+    @IBOutlet weak var leftTopBarImage: UIImageView!
     
     @IBOutlet weak var leftTopBar: UIView!
     @IBOutlet weak var midTopBar: UIView!
@@ -43,7 +44,6 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     
     // Prediction Buttons Clicked:
     @IBAction func firstPredictionButtonClicked(_ sender: UIButton) {
-        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~\(textToTranslate)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         translationReq(firstPredictionButton)
     }
     
@@ -63,6 +63,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         
         translator.translate(params: params) { (result) in
             DispatchQueue.main.async {
+                self.view.bringSubview(toFront: self.calculationTextView)
                 self.translatedText = "\(result)"
                 self.calculationTextView.text = "\(result)"
             }
@@ -70,12 +71,15 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     }
 
     
+    var availLangs = ["Translate to...","Chinese", "Danish", "German", "Hindi", "Spanish"]
+
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 5
+        return availLangs.count
     }
     
     
@@ -83,12 +87,26 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         return availLangs[row]
     }
     
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        var pickerLabel: UILabel? = (view as? UILabel)
+        if pickerLabel == nil {
+            pickerLabel = UILabel()
+            pickerLabel?.font = UIFont(name: "System Medium", size: 12)
+            pickerLabel?.textAlignment = .center
+        }
+        pickerLabel?.text = availLangs[row]
+        pickerLabel?.textColor = UIColor.blue
+        
+        return pickerLabel!
+        
+    }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
         let item1 = availLangs[pickerView.selectedRow(inComponent: 0)]
-       // var item2 = availLangs[1][pickerView.selectedRow(inComponent: 1)]
 
-        
+        let theWorld = UIImage(named: "world.png")
         let chinese = UIImage(named: "chinese.png")
         let danish = UIImage(named: "danish.png")
         let german = UIImage(named: "german.png")
@@ -96,110 +114,33 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         let spanish = UIImage(named: "spanish.png")
         
         switch item1 {
+        case "Translate to...":
+            flagLang.image = theWorld
+            toLang = "en"
         case "Chinese":
             flagLang.image = chinese
+            toLang = "zh-CN"
         case "Danish":
             flagLang.image = danish
+            toLang = "da"
         case "German":
             flagLang.image = german
+            toLang = "de"
         case "Hindi":
             flagLang.image = hindi
+            toLang = "hi"
         case "Spanish":
             flagLang.image = spanish
+            toLang = "es"
         default:
+            // find img not avail
             flagLang.image = hindi
+            toLang = "es"
         }
         
         
     }
-    
-    
-    
-    
-    /*
-    func picker() {
-        let flagPicker = UIPickerView()
-        flagPicker.delegate = self
-
-    }
-    
-    
-    var flagImgArr: [UIImage] = [UIImage(named: "chinese")!, UIImage(named: "danish")!, UIImage(named: "india")!, UIImage(named: "german")!, UIImage(named: "spanish")!  ]
-    
-    
-    
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 6
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 140
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        
-
-        var myView = UIView(frame: CGRect(x: 0, y: 0, width: pickerView.bounds.width, height: 60))
-        let myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        
-        
-        var rowString = String ()
-        
-        switch row {
-            
-        case 0:
-            rowString = "Chinese"
-            myImageView.image = #imageLiteral(resourceName: "chinese")
-                //UIImage(named: "chinese")
-        case 1:
-            rowString = "Danish"
-            myImageView.image = #imageLiteral(resourceName: "danish")
-        case 2:
-            rowString = "Hindi"
-            myImageView.image = #imageLiteral(resourceName: "india")
-        case 3:
-            rowString = "German"
-            myImageView.image = #imageLiteral(resourceName: "german")
-        case 4:
-            rowString = "Spanish"
-            myImageView.image = #imageLiteral(resourceName: "spanish")
-        default: rowString = "error"
-            myImageView.image = nil
-            
-        }
-        
-        
-        let myLabel = UILabel(frame: CGRect(x: 60, y: 0, width: pickerView.bounds.width - 90, height: 60))
-      //  myLabel.font = UIFont(name:some font, size: 18)
-        myLabel.text = rowString
-        
-        myView.addSubview(myLabel)
-        myView.addSubview(myImageView)
-        
-        return myView
-        
-    }
-    
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        <#code#>
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        <#code#>
-    }
- */
-    
-    
-    
-    
-    
+   
     
     //let arTextDepth: Float = 0.01 // 3D text's depth
     var latestPrediction: String = "Calculating..." // var holding most recent ML prediction
@@ -210,8 +151,8 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     
     // COLOR SCHEMES
     let skyBlueColor = UIColor(red: 124.0/255.0, green: 200.0/255.0, blue: 239.0/255.0, alpha: 0.7)
-    let blueColor = UIColor(red: 56.0/255.0, green: 145.0/255.0, blue: 233.0/255.0, alpha: 0.8)
-    let grayColor = UIColor(red: 83.0/255.0, green: 83.0/255.0, blue: 83.0/255.0, alpha: 0.75)
+    let blueColor = UIColor(red: 56.0/255.0, green: 145.0/255.0, blue: 233.0/255.0, alpha: 0.73)
+    let grayColor = UIColor(red: 83.0/255.0, green: 83.0/255.0, blue: 83.0/255.0, alpha: 0.69)
 
     
     
@@ -223,6 +164,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     var counter = 0
     @IBAction func selectButtonWasClicked(_ sender: UIButton) {
         counter += 1
+        view.sendSubview(toBack: calculationTextView)
         if counter % 2 != 0 {
             selectButton.flash()
             selectButton.rotation()
@@ -239,42 +181,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        
-
-//        let skyBlueColor = UIColor(red: 124.0/255.0, green: 200.0/255.0, blue: 239.0/255.0, alpha: 0.7)
-//        let blueColor = UIColor(red: 56.0/255.0, green: 145.0/255.0, blue: 233.0/255.0, alpha: 0.4)
-//        let blackColor = UIColor(red: 83.0/255.0, green: 83.0/255.0, blue: 83.0/255.0, alpha: 0.75)
-//
-//        topBar.backgroundColor = skyBlueColor
-//        topBar.layer.cornerRadius = 6.0
-//
-//
-//        topBar.layer.shadowColor = UIColor.black.cgColor
-//        topBar.layer.shadowOffset = CGSize(width: 0, height: 10)
-//        topBar.layer.shadowOpacity = 0.5
-//        topBar.layer.shadowRadius = 5
-//        topBar.clipsToBounds = false
-//        topBar.layer.masksToBounds = false
-        
-        
-        
-//        enum Colors {
-//            case skyBlueCor
-//        }
-
-            
-
-        //translationReq()
-        
-        
-//
-//
-//
-//        bar.backgroundColor = skyBlueColor
-        
-        
+   
         // set the view's delegate
         sceneView.delegate = self
         
@@ -320,14 +227,15 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         
         
         // TOP BAR COLOR & DESIGN EDITS
-        leftTopBar.backgroundColor = skyBlueColor
-        midTopBar.backgroundColor = blueColor
-        rightTopBar.backgroundColor = skyBlueColor
+       // leftTopBar.backgroundColor = blueColor
+       // midTopBar.backgroundColor = blueColor
+      //  rightTopBar.backgroundColor = blueColor
         // !: result of call unused?
         shadowEdits(leftTopBar)
         shadowEdits(midTopBar)
         shadowEdits(rightTopBar)
         
+        flagLang.image = UIImage(named: "world.png")
 
 
     }
@@ -530,20 +438,9 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         let menuBarHeightConstraint = NSLayoutConstraint(item: menuBar, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 122)
         
         NSLayoutConstraint.activate([menuBarHorizontalConstraint, menuBarVerticalConstraint, menuBarTopConstraint, menuBarWidthConstraint, menuBarHeightConstraint])
-
-        
-        
+       
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  
 
     
    // ARKIT
