@@ -13,11 +13,14 @@ import Vision
 import ROGoogleTranslate
 
 
-class classificationController: UIViewController, ARSCNViewDelegate/*, UICollectionViewDelegateFlowLayout */{
+class classificationController: UIViewController, ARSCNViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource/*UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout*/{
+
 
 
     @IBOutlet weak var sceneView: ARSCNView! // displays view of live camera feed where objs will be displayed
     
+    @IBOutlet weak var flagLang: UIImageView!
+    var availLangs = ["Chinese", "Danish", "German", "Hindi", "Spanish"]
     
     @IBOutlet weak var leftTopBar: UIView!
     @IBOutlet weak var midTopBar: UIView!
@@ -25,6 +28,7 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
     
     //
     var textToTranslate = TheOneAndOnlyObservation.sharedInstance.observation1
+  
     var fromLang = "en"
     var toLang = "es"
     var translatedText = ""
@@ -39,70 +43,162 @@ class classificationController: UIViewController, ARSCNViewDelegate/*, UICollect
     
     // Prediction Buttons Clicked:
     @IBAction func firstPredictionButtonClicked(_ sender: UIButton) {
-        
-        /*
-        var params = ROGoogleTranslateParams(source: "en",
-                                             target: "de",
-                                             text:   "Here you can add your sentence you want to be translated")
-        
-        let translator = ROGoogleTranslate()
-       
-
-        
-        translator.translate(params: params) { (result) in
-            DispatchQueue.main.async {
-                self.translatedText = "\(result)"
-                print("====------=========----------==++!\(self.translatedText)====------======++")
-            }
-        }
-     */
-        translationReq()
-        
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~\(textToTranslate)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        translationReq(firstPredictionButton)
     }
-    
- 
-    
-    func translationReq () {
-        
-        print("===19034850193824==\(firstPredictionButton.titleLabel?.text)=====1239048123409")
-        
-        var params = ROGoogleTranslateParams(source: fromLang,
-                                             target: toLang,
-                                             text:   (firstPredictionButton.titleLabel?.text)!)
-        
-        let translator = ROGoogleTranslate()
-       // translator.apiKey = "AIzaSyALg1aHfloWe00knnfsfhV9HFEB9ikEmBw" // Add your API Key here
-        
-//        var params = ROGoogleTranslateParams()
-//        params.source = fromLang/*.text ?? "en"*/
-//        print(params.source)
-//        params.target = toLang/*.text ?? "de"*/
-//        print(params.target)
-//        params.text = textToTranslate/*.text ?? "The textfield is empty"*/
-//        print(params.text)
-        
-        translator.translate(params: params) { (result) in
-            DispatchQueue.main.async {
-                self.translatedText = "\(result)"
-                print("======================!\(self.translatedText)!=============")
-                self.calculationTextView.text = "\(result)"
-                
-                
-                
-                //  self.calculationTextView.text = classifications[0].identifier
-                
-                
-            }
-        }
-        
-    }
-    
-    
-    
     
     @IBAction func secondPredictionButtonClicked(_ sender: UIButton) {
+        translationReq(secondPredictionButton)
+    }
+    
+    
+    
+    func translationReq(_ predictionButton: UIButton) {
+        
+        let params = ROGoogleTranslateParams(source: fromLang,
+                                             target: toLang,
+                                             text:   (predictionButton.titleLabel?.text)!)
+        
+        let translator = ROGoogleTranslate()
+        
+        translator.translate(params: params) { (result) in
+            DispatchQueue.main.async {
+                self.translatedText = "\(result)"
+                self.calculationTextView.text = "\(result)"
+            }
+        }
+    }
+
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 5
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return availLangs[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+
+        let item1 = availLangs[pickerView.selectedRow(inComponent: 0)]
+       // var item2 = availLangs[1][pickerView.selectedRow(inComponent: 1)]
+
+        
+        let chinese = UIImage(named: "chinese.png")
+        let danish = UIImage(named: "danish.png")
+        let german = UIImage(named: "german.png")
+        let hindi = UIImage(named: "india.png")
+        let spanish = UIImage(named: "spanish.png")
+        
+        switch item1 {
+        case "Chinese":
+            flagLang.image = chinese
+        case "Danish":
+            flagLang.image = danish
+        case "German":
+            flagLang.image = german
+        case "Hindi":
+            flagLang.image = hindi
+        case "Spanish":
+            flagLang.image = spanish
+        default:
+            flagLang.image = hindi
+        }
+        
         
     }
+    
+    
+    
+    
+    /*
+    func picker() {
+        let flagPicker = UIPickerView()
+        flagPicker.delegate = self
+
+    }
+    
+    
+    var flagImgArr: [UIImage] = [UIImage(named: "chinese")!, UIImage(named: "danish")!, UIImage(named: "india")!, UIImage(named: "german")!, UIImage(named: "spanish")!  ]
+    
+    
+    
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 6
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 140
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+
+        var myView = UIView(frame: CGRect(x: 0, y: 0, width: pickerView.bounds.width, height: 60))
+        let myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        
+        
+        var rowString = String ()
+        
+        switch row {
+            
+        case 0:
+            rowString = "Chinese"
+            myImageView.image = #imageLiteral(resourceName: "chinese")
+                //UIImage(named: "chinese")
+        case 1:
+            rowString = "Danish"
+            myImageView.image = #imageLiteral(resourceName: "danish")
+        case 2:
+            rowString = "Hindi"
+            myImageView.image = #imageLiteral(resourceName: "india")
+        case 3:
+            rowString = "German"
+            myImageView.image = #imageLiteral(resourceName: "german")
+        case 4:
+            rowString = "Spanish"
+            myImageView.image = #imageLiteral(resourceName: "spanish")
+        default: rowString = "error"
+            myImageView.image = nil
+            
+        }
+        
+        
+        let myLabel = UILabel(frame: CGRect(x: 60, y: 0, width: pickerView.bounds.width - 90, height: 60))
+      //  myLabel.font = UIFont(name:some font, size: 18)
+        myLabel.text = rowString
+        
+        myView.addSubview(myLabel)
+        myView.addSubview(myImageView)
+        
+        return myView
+        
+    }
+    
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        <#code#>
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        <#code#>
+    }
+ */
+    
+    
+    
+    
     
     
     //let arTextDepth: Float = 0.01 // 3D text's depth
