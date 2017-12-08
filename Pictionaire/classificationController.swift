@@ -44,6 +44,75 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     @IBOutlet weak var secondPredictionConfidenceLabel: UILabel!
     
     // Prediction Buttons Clicked:
+    
+    
+    @IBAction func customTranslate(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Not what you were looking for?",
+                                      message: "Text Translation",
+                                      preferredStyle: .alert)
+        
+        let translateAction = UIAlertAction(title: "Translate",
+                                            style: .default) { action in
+                                                
+                                                
+                                                let desiredTrans = alert.textFields![0]
+                                                //let passwordField = alert.textFields![1]
+                                                
+                                                
+                                                
+                                                
+                                                let params = ROGoogleTranslateParams(source: self.fromLang,
+                                                                                     target: self.toLang,
+                                                                                     text: desiredTrans.text!)
+                                                
+                                                let translator = ROGoogleTranslate()
+                                                
+                                                translator.translate(params: params) { (result) in
+                                                    alert.dismiss(animated: true, completion: nil)
+                                                    
+                                                    
+
+                                                    
+                                                    DispatchQueue.main.async {
+                                                                                                            self.view.bringSubview(toFront: self.calculationTextView)
+                                                        
+                                                        
+                                                        self.calculationTextView.text = "\(result)"
+                                                    }
+                                                }
+                                                
+                                                
+                                                
+                                                
+        }
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .default)
+        
+        alert.addTextField { textEmail in
+            textEmail.placeholder = "Enter your desired text to translate."
+        }
+        
+        //        alert.addTextField { textPassword in
+        //            textPassword.isSecureTextEntry = true
+        //            textPassword.placeholder = "Enter your password"
+        //        }
+        
+        alert.addAction(translateAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     @IBAction func firstPredictionButtonClicked(_ sender: UIButton) {
         translationReq(firstPredictionButton)
     }
