@@ -19,12 +19,12 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     // MARK: ===== UI VARIABLES =====
     
     @IBOutlet weak var sceneView: ARSCNView! // displays view of live camera feed where objs will be displayed
+    @IBOutlet weak var topBar: UIView!
+    @IBOutlet weak var topTranslateTF: UITextField!
     @IBOutlet weak var flagLang: UIImageView!
     @IBOutlet weak var bottomBar: UIView!
-    @IBOutlet weak var leftTopBar: UIView!
-    @IBOutlet weak var midTopBar: UIView!
-    @IBOutlet weak var rightTopBar: UIView!
     @IBOutlet weak var calculationTextView: UITextView!
+    @IBOutlet weak var langOptionsView: UIView!
     @IBOutlet weak var selectButton: UIButton!
     
     // Updating UI elements with top 2 predictions:
@@ -113,17 +113,23 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         loopCoreMLUpdate()
         
         // TOP BAR COLOR & DESIGN EDITS
-        shadowEdits(leftTopBar, crnRad: 6.0)
-        shadowEdits(midTopBar, crnRad: 6.0)
-        shadowEdits(rightTopBar, crnRad: 6.0)
-        shadowEdits(calculationTextView, crnRad: 13.0)
-        shadowEdits(bottomBar, crnRad: 6.0)
+        //shadowEdits(leftTopBar, crnRad: 6.0)
+        viewEdits(topBar, crnrad: 12.0)
+        topTranslateTF.layer.cornerRadius = 13.0
+        topTranslateTF.clipsToBounds = false
+        topTranslateTF.layer.masksToBounds = false
+        viewEdits(calculationTextView, crnrad: 13.0)
+        viewEdits(bottomBar, crnrad: 6.0)
         calculationTextView.alpha = 0.83
-
+        
         // send calculationTextView to back originally
         view.sendSubview(toBack: calculationTextView)
         
+        // send pickerView to back originally
+        view.sendSubview(toBack: langOptionsView)
+        
         flagLang.image = UIImage(named: "world.png") // set user-selected default lang?
+        flagLang.alpha = 1
     }
     
     
@@ -165,9 +171,11 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
             selectButton.flash()
             selectButton.rotation()
             sceneView.session.pause()
+            view.bringSubview(toFront: langOptionsView)
         } else {
             selectButton.quickPulse()
             sceneView.session.run(configuration)
+            view.sendSubview(toBack: langOptionsView)
         }
     }
     // reminder: update shitty logic for toggling sesh - pause/resume
@@ -184,6 +192,8 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     
     // MARK: ===== PICKER VIEW =====
     var availLangs = ["Translate to...","Chinese", "Danish", "German", "Hindi", "Spanish"]
+    var fromLang = "en"
+    var toLang = "es"
 
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -209,6 +219,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         }
         pickerLabel?.text = availLangs[row]
         pickerLabel?.textColor = UIColor.white
+        pickerLabel?.alpha = 1
         
         return pickerLabel!
     }
@@ -226,6 +237,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         
         switch item1 {
         case "Translate to...":
+            
             flagLang.image = theWorld
             toLang = "en"
         case "Chinese":
@@ -361,8 +373,6 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     // MARK: ===== GOOGLE TRANSLATION =====
     
     var textToTranslate = TheOneAndOnlyObservation.sharedInstance.observation1
-    var fromLang = "en"
-    var toLang = "es"
     var translatedText = ""
     
     
@@ -404,26 +414,21 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     
     
     
-    // MARK: ===== SHADOW EDITS =====
-    func shadowEdits (_ bar: UIView, crnRad cRad: CGFloat) {
+    // MARK: ===== UIVIEW EDITS =====
+
+  
+    func viewEdits (_ theView: UIView, crnrad crnrRad: CGFloat) {
         
-        bar.layer.cornerRadius = cRad
+        theView.layer.cornerRadius = crnrRad
+        theView.layer.shadowColor = UIColor.black.cgColor
+        theView.layer.shadowOffset = CGSize(width: 6, height: 10)
+        theView.layer.shadowOpacity = 0.5
+        theView.layer.shadowRadius = 5
+        theView.clipsToBounds = false
+        theView.layer.masksToBounds = false
         
-        
-        bar.layer.shadowColor = UIColor.black.cgColor
-        bar.layer.shadowOffset = CGSize(width: 6, height: 10)
-        bar.layer.shadowOpacity = 0.5
-        bar.layer.shadowRadius = 5
-        bar.clipsToBounds = false
-        bar.layer.masksToBounds = false
-        
-        //  return bar
         
     }
-    
-    
-    
-    
     
     
     
