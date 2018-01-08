@@ -13,28 +13,19 @@ import Vision
 import ROGoogleTranslate
 
 
+
 class classificationController: UIViewController, ARSCNViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource/*UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout*/{
 
-
-
+    // MARK: ===== UI VARIABLES =====
+    
     @IBOutlet weak var sceneView: ARSCNView! // displays view of live camera feed where objs will be displayed
-    
     @IBOutlet weak var flagLang: UIImageView!
-    
-    
     @IBOutlet weak var bottomBar: UIView!
-    
     @IBOutlet weak var leftTopBar: UIView!
     @IBOutlet weak var midTopBar: UIView!
     @IBOutlet weak var rightTopBar: UIView!
-    
-    //
-    var textToTranslate = TheOneAndOnlyObservation.sharedInstance.observation1
-  
-    var fromLang = "en"
-    var toLang = "es"
-    var translatedText = ""
-    
+    @IBOutlet weak var calculationTextView: UITextView!
+    @IBOutlet weak var selectButton: UIButton!
     
     // Updating UI elements with top 2 predictions:
     @IBOutlet weak var firstPredictionButton: UIButton!
@@ -42,96 +33,156 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     
     @IBOutlet weak var secondPredictionButton: UIButton!
     @IBOutlet weak var secondPredictionConfidenceLabel: UILabel!
-  
     
     
-    // PREDICTION BUTTONS CLICKED:
- 
-    /*
-    // "i" button that pops up alert to input custom text to translate
-    @IBAction func customTranslate(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Not what you were looking for?",
-                                      message: "Text Translation",
-                                      preferredStyle: .alert)
-        
-        let translateAction = UIAlertAction(title: "Translate",
-                                            style: .default) { action in
-                                                
-                                                let desiredTrans = alert.textFields![0]
-                                                //let passwordField = alert.textFields![1]
-                                                
-                                                let params = ROGoogleTranslateParams(source: self.fromLang,
-                                                                                     target: self.toLang,
-                                                                                     text: desiredTrans.text!)
-                                                
-                                                let translator = ROGoogleTranslate()
-                                                
-                                                translator.translate(params: params) { (result) in
-                                                    alert.dismiss(animated: true, completion: nil)
-                                                    
-                                                    DispatchQueue.main.async {
-                                                        self.view.bringSubview(toFront: self.calculationTextView)
-                                                        self.calculationTextView.text = "\(result)"
-                                                    }
-                                                }
+    
+    
+    
+    
+    
+    
+    
+    
+    // MARK: ===== DEVICE COMPATIBILITY =====
+    // * better use with AR in future *
+    
+    func checkForSupport () {
+        if ARWorldTrackingConfiguration.isSupported {
+            print("This device is compatible.")
+            
+            // Create a ARWTC session config
+            // ARWTC: config that uses the rear cam, tracks device's orientation & position, & detects real-world flat surfaces
+            configuration = ARWorldTrackingConfiguration()
+            // Enable plane detection
+            configuration.planeDetection = .horizontal
+            
+            // Run the view's session
+            sceneView.session.run(configuration)
+        } else {
+            print ("This device is incompatible.")
+            
+            // possibly throw alert about unsupported device (no A9 chip)?
+            // perhaps set logic to use AROrientationTrackingConfiguration
+            let configuration = AROrientationTrackingConfiguration()
+            // AROTC has no plane detection property
+            
+            // Run the view's session
+            sceneView.session.run(configuration)
         }
- 
-    
-    
-        
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .default)
-        
-        alert.addTextField { textEmail in
-            textEmail.placeholder = "Enter your desired text to translate."
-        }
-        
-        //        alert.addTextField { textPassword in
-        //            textPassword.isSecureTextEntry = true
-        //            textPassword.placeholder = "Enter your password"
-        //        }
-        
-        alert.addAction(translateAction)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true, completion: nil)
-        
-    }
-    */
-    
-    
-    
-    @IBAction func firstPredictionButtonClicked(_ sender: UIButton) {
-        translationReq(firstPredictionButton)
-    }
-    
-    @IBAction func secondPredictionButtonClicked(_ sender: UIButton) {
-        translationReq(secondPredictionButton)
     }
     
     
     
-    func translationReq(_ predictionButton: UIButton) {
+    
+    
+    
+    
+    
+    
+    
+    // MARK: ===== VIEW DID... =====
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        let params = ROGoogleTranslateParams(source: fromLang,
-                                             target: toLang,
-                                             text:   (predictionButton.titleLabel?.text)!)
+        // set the view's delegate
+        sceneView.delegate = self
         
-        let translator = ROGoogleTranslate()
+        // (don't) show statistics such as fps & timing information at bottom
+        sceneView.showsStatistics = true
         
-        translator.translate(params: params) { (result) in
-            DispatchQueue.main.async {
-                self.view.bringSubview(toFront: self.calculationTextView)
-                self.translatedText = "\(result)"
-                self.calculationTextView.text = "\(result)"
-            }
+        // instantiate a new session
+        let scene = SCNScene()
+        
+        // set scene to the sceneView
+        sceneView.scene = scene
+        
+        // Model Set-Up
+        guard let model = try? VNCoreMLModel(for: Resnet50().model) else {
+            fatalError("Error: model could not be loaded.")
         }
+        
+        // CoreML
+        let classificationRequest = VNCoreMLRequest(model: model, completionHandler: classificationCompleteHandler)
+        classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop // crop from centre of images and scale
+        visionRequests = [classificationRequest]
+        
+        // button loading animation
+        selectButton.loadPulse()
+        
+        loopCoreMLUpdate()
+        
+        // TOP BAR COLOR & DESIGN EDITS
+        shadowEdits(leftTopBar, crnRad: 6.0)
+        shadowEdits(midTopBar, crnRad: 6.0)
+        shadowEdits(rightTopBar, crnRad: 6.0)
+        shadowEdits(calculationTextView, crnRad: 13.0)
+        shadowEdits(bottomBar, crnRad: 6.0)
+        calculationTextView.alpha = 0.83
+
+        // send calculationTextView to back originally
+        view.sendSubview(toBack: calculationTextView)
+        
+        flagLang.image = UIImage(named: "world.png") // set user-selected default lang?
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkForSupport()
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Pause the view's session
+        sceneView.session.pause()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 
     
     
+
     
-    // START PICKER VIEW STUFF
+    
+    
+
+   
+    
+    // MARK: ===== TOGGLE BUTTON LOCK/UNLOCK =====
+    // - applies custom animation to button
+    // - pauses/resumes session
+    var counter = 0
+    
+    @IBAction func selectButtonWasClicked(_ sender: UIButton) {
+        counter += 1
+        view.sendSubview(toBack: calculationTextView)
+        
+        if counter % 2 != 0 {
+            selectButton.flash()
+            selectButton.rotation()
+            sceneView.session.pause()
+        } else {
+            selectButton.quickPulse()
+            sceneView.session.run(configuration)
+        }
+    }
+    // reminder: update shitty logic for toggling sesh - pause/resume
+    // boolean enum cases?
+    
+
+  
+    
+    
+    
+    
+    
+    
+    
+    // MARK: ===== PICKER VIEW =====
     var availLangs = ["Translate to...","Chinese", "Danish", "German", "Hindi", "Spanish"]
 
     
@@ -160,7 +211,6 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         pickerLabel?.textColor = UIColor.white
         
         return pickerLabel!
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -198,186 +248,36 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
             flagLang.image = hindi
             toLang = "es"
         }
-        
-        
-    }    // END PICKER VIEW STUFF
+    }
+
     
     
     
+    
+    
+
+    
+
+  
+    // MARK: ===== COREML FUNCTIONS =====
+
     var visionRequests = [VNCoreMLRequest]() // or try [VNRequest] ?
     let dispatchQueueML = DispatchQueue(label: "coreml.dispatchqueue")
     var configuration: ARWorldTrackingConfiguration!
-    
-    /*
-    // COLOR SCHEMES
-    let skyBlueColor = UIColor(red: 124.0/255.0, green: 200.0/255.0, blue: 239.0/255.0, alpha: 0.7)
-    let blueColor = UIColor(red: 56.0/255.0, green: 145.0/255.0, blue: 233.0/255.0, alpha: 0.73)
-    let grayColor = UIColor(red: 83.0/255.0, green: 83.0/255.0, blue: 83.0/255.0, alpha: 0.69)
-*/
-    
-    
-    
-    @IBOutlet weak var calculationTextView: UITextView!
-
-    // reminder: update shitty logic for toggling sesh - pause/resume
-    // boolean enum cases?
-    var counter = 0
-    
-    @IBAction func selectButtonWasClicked(_ sender: UIButton) {
-        counter += 1
-        view.sendSubview(toBack: calculationTextView)
-        
-        if counter % 2 != 0 {
-            selectButton.flash()
-            selectButton.rotation()
-            sceneView.session.pause()
-        } else {
-            selectButton.quickPulse()
-            sceneView.session.run(configuration)
-        }
-    }
-    
-    @IBOutlet weak var selectButton: UIButton!
-    
 
     
-    
-    
-    
-
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-   
-        // set the view's delegate
-        
-        sceneView.delegate = self
-        
-        // (don't) show statistics such as fps & timing information at bottom
-        sceneView.showsStatistics = true
-        
-        
-        // instantiate a new session
-        let scene = SCNScene()
-        
-        // set scene to the sceneView
-        sceneView.scene = scene
-
-        
-        //////////////////////////////////////////////////
-        // Tap Gesture Recognizer
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(gestureRecognize:)))
-//        view.addGestureRecognizer(tapGesture)
-        // need to make func
-        //////////////////////////////////////////////////
-        
-        // Model Set-Up
-        guard let model = try? VNCoreMLModel(for: Resnet50().model) else {
-            fatalError("Error: model could not be loaded.")
-        }
-
-
-        let classificationRequest = VNCoreMLRequest(model: model, completionHandler: classificationCompleteHandler)
-        classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop // crop from centre of images and scale
-        visionRequests = [classificationRequest]
-        
-        
-//        ARText Stuff:
-//        let text = SCNText(string: "testing", extrusionDepth: 0.5) // text to be displayed
-//
-//        let material = SCNMaterial() // instantiating material obj
-//        material.diffuse.contents = UIColor.blue // diffuse = base material of obj
-//        text.materials = [material] // needs array of [material] b/c can assign multiple materials to obj (can change diffuse, metallicness, texture, etc.)
-        
-        selectButton.loadPulse()
-        
-        loopCoreMLUpdate()
-        
-        
-        // TOP BAR COLOR & DESIGN EDITS
-
-        // !: result of call unused?
-        shadowEdits(leftTopBar, crnRad: 6.0)
-        shadowEdits(midTopBar, crnRad: 6.0)
-        shadowEdits(rightTopBar, crnRad: 6.0)
-        calculationTextView.alpha = 0.83
-        shadowEdits(calculationTextView, crnRad: 13.0)
-
-        shadowEdits(bottomBar, crnRad: 6.0)
-
-        view.sendSubview(toBack: calculationTextView)
-
-        flagLang.image = UIImage(named: "world.png")
-
-
-    }
-    
-
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        checkForSupport()
-
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Pause the view's session
-        sceneView.session.pause()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    // FUNCTIONS:
-    
-    // checks for device compatibility
-    func checkForSupport () {
-        if ARWorldTrackingConfiguration.isSupported {
-            print("This device is compatible.")
-            
-            // Create a ARWTC session config
-            // ARWTC: config that uses the rear cam, tracks device's orientation & position, & detects real-world flat surfaces
-            configuration = ARWorldTrackingConfiguration()
-            // Enable plane detection
-            configuration.planeDetection = .horizontal
-            
-            // Run the view's session
-            sceneView.session.run(configuration)
-        } else {
-            print ("This device is incompatible.")
-            
-            // possibly throw alert about unsupported device (no A9 chip)?
-            // perhaps set logic to use AROrientationTrackingConfiguration (CHECK IF THIS WORKS_
-            let configuration = AROrientationTrackingConfiguration()
-            // AROTC has no plane detection property
-            
-            // Run the view's session
-            sceneView.session.run(configuration)
-        }
-    }
-    
-
-
     // continuously run CoreML
     func loopCoreMLUpdate() {
-        
         dispatchQueueML.async {
             // DispatchQueue.global(qos: .background).async { // runs async background
-            
+        
             // update
             self.updateCoreML()
             
             // loop
             self.loopCoreMLUpdate()
         }
-        
     }
-    
     
     // completionHandler from viewDidLoad classificationRequest
     func classificationCompleteHandler(request: VNRequest, error: Error?) {
@@ -412,8 +312,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
             
             TheOneAndOnlyObservation.sharedInstance.observation1 = predictOne
             TheTwoAndOnlyObservation.sharedInstance.observation2 = predictTwo
-            
-            
+
             
             // set cell 1's observation button to classifications[0].identifier =============
           //  self.calculationTextView.text = classifications[0].identifier
@@ -428,8 +327,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
             
         }
     }
-    
-    
+   
     
     func updateCoreML() {
         // camera img as RGB
@@ -452,6 +350,61 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     }
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    // MARK: ===== GOOGLE TRANSLATION =====
+    
+    var textToTranslate = TheOneAndOnlyObservation.sharedInstance.observation1
+    var fromLang = "en"
+    var toLang = "es"
+    var translatedText = ""
+    
+    
+    @IBAction func firstPredictionButtonClicked(_ sender: UIButton) {
+        translationReq(firstPredictionButton)
+    }
+    
+    @IBAction func secondPredictionButtonClicked(_ sender: UIButton) {
+        translationReq(secondPredictionButton)
+    }
+    
+    
+    
+    func translationReq(_ predictionButton: UIButton) {
+        
+        let params = ROGoogleTranslateParams(source: fromLang,
+                                             target: toLang,
+                                             text:   (predictionButton.titleLabel?.text)!)
+        
+        let translator = ROGoogleTranslate()
+        
+        translator.translate(params: params) { (result) in
+            DispatchQueue.main.async {
+                self.view.bringSubview(toFront: self.calculationTextView)
+                self.translatedText = "\(result)"
+                self.calculationTextView.text = "\(result)"
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // MARK: ===== SHADOW EDITS =====
     func shadowEdits (_ bar: UIView, crnRad cRad: CGFloat) {
         
         bar.layer.cornerRadius = cRad
@@ -468,24 +421,83 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         
     }
     
-   /*
-    func viewBackgroundColor (_ yourView: UIView, _ theColor: String) {
-        
-        let skyBlueColor = UIColor(red: 124.0/255.0, green: 200.0/255.0, blue: 239.0/255.0, alpha: 0.7)
-        let blueColor = UIColor(red: 56.0/255.0, green: 145.0/255.0, blue: 233.0/255.0, alpha: 0.4)
-        let blackColor = UIColor(red: 83.0/255.0, green: 83.0/255.0, blue: 83.0/255.0, alpha: 0.75)
-        
-        
-        yourView.backgroundColor = desiredColor
-        
-        
-    }
-    */
     
     
     
     
     
+    
+    
+    
+    
+    
+    
+
+    
+    
+    // MARK: ===== USER INPUT CUSTOM TEXT =====
+    /*
+     // "i" button that pops up alert to input custom text to translate
+     @IBAction func customTranslate(_ sender: UIButton) {
+     let alert = UIAlertController(title: "Not what you were looking for?",
+     message: "Text Translation",
+     preferredStyle: .alert)
+     
+     let translateAction = UIAlertAction(title: "Translate",
+     style: .default) { action in
+     
+     let desiredTrans = alert.textFields![0]
+     //let passwordField = alert.textFields![1]
+     
+     let params = ROGoogleTranslateParams(source: self.fromLang,
+     target: self.toLang,
+     text: desiredTrans.text!)
+     
+     let translator = ROGoogleTranslate()
+     
+     translator.translate(params: params) { (result) in
+     alert.dismiss(animated: true, completion: nil)
+     
+     DispatchQueue.main.async {
+     self.view.bringSubview(toFront: self.calculationTextView)
+     self.calculationTextView.text = "\(result)"
+     }
+     }
+     }
+     
+     
+     
+     
+     let cancelAction = UIAlertAction(title: "Cancel",
+     style: .default)
+     
+     alert.addTextField { textEmail in
+     textEmail.placeholder = "Enter your desired text to translate."
+     }
+     
+     //        alert.addTextField { textPassword in
+     //            textPassword.isSecureTextEntry = true
+     //            textPassword.placeholder = "Enter your password"
+     //        }
+     
+     alert.addAction(translateAction)
+     alert.addAction(cancelAction)
+     
+     present(alert, animated: true, completion: nil)
+     
+     }
+     */
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // MARK: ===== ~EXTRANEOUS~ =====
 
     let menuBar: MenuBar = {
         let mb = MenuBar()
@@ -515,27 +527,18 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         NSLayoutConstraint.activate([menuBarHorizontalConstraint, menuBarVerticalConstraint, menuBarTopConstraint, menuBarWidthConstraint, menuBarHeightConstraint])
        
     }
-  
-
-    
-   // ARKIT
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        
-    }
-    
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
-    }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
-    }
 }
 
+
+
+
+
+
+
+
+
+
+// MARK: ===== EXTENSIONS =====
 extension UIView {
     func addConstraintsWithFormat(format: String, views: UIView...) {
         
