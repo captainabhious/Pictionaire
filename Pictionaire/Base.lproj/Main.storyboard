@@ -186,7 +186,7 @@
                         <outlet property="sceneView" destination="H2v-0T-KGB" id="8es-Ox-fXZ"/>
                         <outlet property="secondPredictionButton" destination="qZY-uf-NMa" id="rjs-mC-F4S"/>
                         <outlet property="secondPredictionConfidenceLabel" destination="A3x-rU-VCY" id="QRC-GI-KK0"/>
-                        <outlet property="selectButton" destination="g81-Td-QKR" id="Gj6-ny-lWI"/>
+                        <outlet property="selectButton" destination="g81-Td-QKR" id="7Pv-hW-U5I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
