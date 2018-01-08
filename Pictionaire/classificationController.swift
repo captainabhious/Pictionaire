@@ -42,10 +42,13 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     
     @IBOutlet weak var secondPredictionButton: UIButton!
     @IBOutlet weak var secondPredictionConfidenceLabel: UILabel!
+  
     
-    // Prediction Buttons Clicked:
     
-    
+    // PREDICTION BUTTONS CLICKED:
+ 
+    /*
+    // "i" button that pops up alert to input custom text to translate
     @IBAction func customTranslate(_ sender: UIButton) {
         let alert = UIAlertController(title: "Not what you were looking for?",
                                       message: "Text Translation",
@@ -54,12 +57,8 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         let translateAction = UIAlertAction(title: "Translate",
                                             style: .default) { action in
                                                 
-                                                
                                                 let desiredTrans = alert.textFields![0]
                                                 //let passwordField = alert.textFields![1]
-                                                
-                                                
-                                                
                                                 
                                                 let params = ROGoogleTranslateParams(source: self.fromLang,
                                                                                      target: self.toLang,
@@ -70,22 +69,15 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
                                                 translator.translate(params: params) { (result) in
                                                     alert.dismiss(animated: true, completion: nil)
                                                     
-                                                    
-
-                                                    
                                                     DispatchQueue.main.async {
-                                                                                                            self.view.bringSubview(toFront: self.calculationTextView)
-                                                        
-                                                        
+                                                        self.view.bringSubview(toFront: self.calculationTextView)
                                                         self.calculationTextView.text = "\(result)"
                                                     }
                                                 }
-                                                
-                                                
-                                                
-                                                
         }
-        
+ 
+    
+    
         
         let cancelAction = UIAlertAction(title: "Cancel",
                                          style: .default)
@@ -105,11 +97,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         present(alert, animated: true, completion: nil)
         
     }
-    
-    
-    
-    
-    
+    */
     
     
     
@@ -141,6 +129,9 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     }
 
     
+    
+    
+    // START PICKER VIEW STUFF
     var availLangs = ["Translate to...","Chinese", "Danish", "German", "Hindi", "Spanish"]
 
     
@@ -209,21 +200,20 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         }
         
         
-    }
-   
+    }    // END PICKER VIEW STUFF
     
-    //let arTextDepth: Float = 0.01 // 3D text's depth
-    var latestPrediction: String = "Calculating..." // var holding most recent ML prediction
+    
     
     var visionRequests = [VNCoreMLRequest]() // or try [VNRequest] ?
     let dispatchQueueML = DispatchQueue(label: "coreml.dispatchqueue")
     var configuration: ARWorldTrackingConfiguration!
     
+    /*
     // COLOR SCHEMES
     let skyBlueColor = UIColor(red: 124.0/255.0, green: 200.0/255.0, blue: 239.0/255.0, alpha: 0.7)
     let blueColor = UIColor(red: 56.0/255.0, green: 145.0/255.0, blue: 233.0/255.0, alpha: 0.73)
     let grayColor = UIColor(red: 83.0/255.0, green: 83.0/255.0, blue: 83.0/255.0, alpha: 0.69)
-
+*/
     
     
     
@@ -232,9 +222,11 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     // reminder: update shitty logic for toggling sesh - pause/resume
     // boolean enum cases?
     var counter = 0
+    
     @IBAction func selectButtonWasClicked(_ sender: UIButton) {
         counter += 1
         view.sendSubview(toBack: calculationTextView)
+        
         if counter % 2 != 0 {
             selectButton.flash()
             selectButton.rotation()
@@ -247,6 +239,8 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     
     @IBOutlet weak var selectButton: UIButton!
     
+
+    
     
     
     
@@ -257,6 +251,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         
    
         // set the view's delegate
+        
         sceneView.delegate = self
         
         // (don't) show statistics such as fps & timing information at bottom
@@ -301,9 +296,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         
         
         // TOP BAR COLOR & DESIGN EDITS
-       // leftTopBar.backgroundColor = blueColor
-       // midTopBar.backgroundColor = blueColor
-      //  rightTopBar.backgroundColor = blueColor
+
         // !: result of call unused?
         shadowEdits(leftTopBar, crnRad: 6.0)
         shadowEdits(midTopBar, crnRad: 6.0)

@@ -23,6 +23,11 @@ class TheTwoAndOnlyObservation {
 
 }
 
+//class LockButton {
+//    var unlocked: Bool = true
+//    var locked: Bool = false
+//
+//}
 
 
 
