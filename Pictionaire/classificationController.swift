@@ -20,12 +20,15 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     
     @IBOutlet weak var sceneView: ARSCNView! // displays view of live camera feed where objs will be displayed
     @IBOutlet weak var topBar: UIView!
-    @IBOutlet weak var topTranslateTF: UITextField!
     @IBOutlet weak var flagLang: UIImageView!
+    @IBOutlet weak var topTranslateView: UIView!
     @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak var calculationTextView: UITextView!
     @IBOutlet weak var langOptionsView: UIView!
     @IBOutlet weak var selectButton: UIButton!
+    
+    // Prediction Label
+    @IBOutlet weak var predictionLabel: UILabel!
     
     // Updating UI elements with top 2 predictions:
     @IBOutlet weak var firstPredictionButton: UIButton!
@@ -115,11 +118,11 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         // TOP BAR COLOR & DESIGN EDITS
         //shadowEdits(leftTopBar, crnRad: 6.0)
         viewEdits(topBar, crnrad: 12.0)
-        topTranslateTF.layer.cornerRadius = 13.0
-        topTranslateTF.clipsToBounds = false
-        topTranslateTF.layer.masksToBounds = false
         viewEdits(calculationTextView, crnrad: 13.0)
         viewEdits(bottomBar, crnrad: 6.0)
+        topTranslateView.layer.borderColor = UIColor.white.cgColor
+        topTranslateView.layer.borderWidth = 2.0
+        topTranslateView.layer.cornerRadius = 13.0
         calculationTextView.alpha = 0.83
         
         // send calculationTextView to back originally
@@ -194,6 +197,8 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
     var availLangs = ["Translate to...","Chinese", "Danish", "German", "Hindi", "Spanish"]
     var fromLang = "en"
     var toLang = "es"
+    var dict = [String : String]()
+    
 
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -243,6 +248,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         case "Chinese":
             flagLang.image = chinese
             toLang = "zh-CN"
+            predictionLabel.text = "yo"
         case "Danish":
             flagLang.image = danish
             toLang = "da"
@@ -328,6 +334,10 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
             
             // set cell 1's observation button to classifications[0].identifier =============
           //  self.calculationTextView.text = classifications[0].identifier
+            
+            self.predictionLabel.text = predictOne
+            self.dict["guess"] = predictOne
+            
             
             self.firstPredictionButton.setTitle(predictOne, for: .normal)
             self.firstPredictionConfidenceLabel.text = "\(confidenceOneString)%"
@@ -418,7 +428,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
 
   
     func viewEdits (_ theView: UIView, crnrad crnrRad: CGFloat) {
-        
+
         theView.layer.cornerRadius = crnrRad
         theView.layer.shadowColor = UIColor.black.cgColor
         theView.layer.shadowOffset = CGSize(width: 6, height: 10)
@@ -426,8 +436,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         theView.layer.shadowRadius = 5
         theView.clipsToBounds = false
         theView.layer.masksToBounds = false
-        
-        
+
     }
     
     

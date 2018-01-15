@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D5E099B1FDA82740042A2F5 /* TabBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E09991FDA82740042A2F5 /* TabBarCollectionViewCell.swift */; };
-		7D5E099C1FDA82740042A2F5 /* TabBarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5E099A1FDA82740042A2F5 /* TabBarCollectionViewCell.xib */; };
 		7D70CC4920031569002DE42E /* LockUnlockButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70CC4820031569002DE42E /* LockUnlockButton.swift */; };
 		7D88EE121FD6C2DA005D3D91 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EE111FD6C2DA005D3D91 /* Inceptionv3.mlmodel */; };
 		7D88EE141FD6C4A8005D3D91 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EE131FD6C4A8005D3D91 /* UIButtonExtension.swift */; };
@@ -28,8 +26,6 @@
 /* Begin PBXFileReference section */
 		3FB761E36200AFEF371644CD /* Pods_Pictionaire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pictionaire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C1273D8A40D803063D3434C /* Pods-Pictionaire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictionaire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pictionaire/Pods-Pictionaire.debug.xcconfig"; sourceTree = "<group>"; };
-		7D5E09991FDA82740042A2F5 /* TabBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCollectionViewCell.swift; sourceTree = "<group>"; };
-		7D5E099A1FDA82740042A2F5 /* TabBarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarCollectionViewCell.xib; sourceTree = "<group>"; };
 		7D70CC4820031569002DE42E /* LockUnlockButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockUnlockButton.swift; sourceTree = "<group>"; };
 		7D88EE111FD6C2DA005D3D91 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		7D88EE131FD6C4A8005D3D91 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -100,13 +96,11 @@
 				7D70CC4A2003157A002DE42E /* New Group */,
 				7D8F3EED1FD5CE4C00805F40 /* AppDelegate.swift */,
 				7D8F3EF31FD5CE4C00805F40 /* Main.storyboard */,
-				7D8F3EF11FD5CE4C00805F40 /* classificationController.swift */,
 				7DBB3A7C1FDA27140061AD42 /* GlobalVariables.swift */,
+				7D8F3EF11FD5CE4C00805F40 /* classificationController.swift */,
+				7D88EE131FD6C4A8005D3D91 /* UIButtonExtension.swift */,
 				7DE368C21FDA0D300072D23A /* Translation.swift */,
 				7D8E60F11FD7D85E002D6ACD /* MenuBar.swift */,
-				7D88EE131FD6C4A8005D3D91 /* UIButtonExtension.swift */,
-				7D5E09991FDA82740042A2F5 /* TabBarCollectionViewCell.swift */,
-				7D5E099A1FDA82740042A2F5 /* TabBarCollectionViewCell.xib */,
 				7D8F3EEF1FD5CE4C00805F40 /* art.scnassets */,
 				7D8F3EF61FD5CE4C00805F40 /* Assets.xcassets */,
 				7D8F3EF81FD5CE4C00805F40 /* LaunchScreen.storyboard */,
@@ -190,7 +184,6 @@
 			files = (
 				7D8F3EF01FD5CE4C00805F40 /* art.scnassets in Resources */,
 				7D8F3EFA1FD5CE4C00805F40 /* LaunchScreen.storyboard in Resources */,
-				7D5E099C1FDA82740042A2F5 /* TabBarCollectionViewCell.xib in Resources */,
 				7D8F3EF71FD5CE4C00805F40 /* Assets.xcassets in Resources */,
 				7D8F3EF51FD5CE4C00805F40 /* Main.storyboard in Resources */,
 			);
@@ -263,7 +256,6 @@
 				7D8E60F21FD7D85E002D6ACD /* MenuBar.swift in Sources */,
 				7D70CC4920031569002DE42E /* LockUnlockButton.swift in Sources */,
 				7D88EE121FD6C2DA005D3D91 /* Inceptionv3.mlmodel in Sources */,
-				7D5E099B1FDA82740042A2F5 /* TabBarCollectionViewCell.swift in Sources */,
 				7DE368C31FDA0D300072D23A /* Translation.swift in Sources */,
 				7D8F3F021FD5EE0B00805F40 /* Resnet50.mlmodel in Sources */,
 				7D8F3EEE1FD5CE4C00805F40 /* AppDelegate.swift in Sources */,
