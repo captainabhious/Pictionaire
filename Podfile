@@ -7,5 +7,5 @@ target 'Pictionaire' do
 
   # Pods for Pictionaire
   pod "ROGoogleTranslate"
-
+  pod 'Fritz', '~> 1.0.0-beta'
 end

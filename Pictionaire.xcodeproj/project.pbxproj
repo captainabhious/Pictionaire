@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5FA2C733202A3AEF00CDF581 /* Resnet50+Fritz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2C732202A3AEF00CDF581 /* Resnet50+Fritz.swift */; };
 		7D70CC4920031569002DE42E /* LockUnlockButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70CC4820031569002DE42E /* LockUnlockButton.swift */; };
 		7D88EE121FD6C2DA005D3D91 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EE111FD6C2DA005D3D91 /* Inceptionv3.mlmodel */; };
 		7D88EE141FD6C4A8005D3D91 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EE131FD6C4A8005D3D91 /* UIButtonExtension.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		3FB761E36200AFEF371644CD /* Pods_Pictionaire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pictionaire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FA2C732202A3AEF00CDF581 /* Resnet50+Fritz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resnet50+Fritz.swift"; sourceTree = "<group>"; };
 		7C1273D8A40D803063D3434C /* Pods-Pictionaire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictionaire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pictionaire/Pods-Pictionaire.debug.xcconfig"; sourceTree = "<group>"; };
 		7D70CC4820031569002DE42E /* LockUnlockButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockUnlockButton.swift; sourceTree = "<group>"; };
 		7D88EE111FD6C2DA005D3D91 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				7D8F3EFB1FD5CE4C00805F40 /* Info.plist */,
 				7D8F3F011FD5EE0B00805F40 /* Resnet50.mlmodel */,
 				7D88EE111FD6C2DA005D3D91 /* Inceptionv3.mlmodel */,
+				5FA2C732202A3AEF00CDF581 /* Resnet50+Fritz.swift */,
 			);
 			path = Pictionaire;
 			sourceTree = "<group>";
@@ -217,10 +220,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Pictionaire/Pods-Pictionaire-frameworks.sh",
+				"${PODS_ROOT}/Fritz/Framework/Fritz.framework",
 				"${BUILT_PRODUCTS_DIR}/ROGoogleTranslate/ROGoogleTranslate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fritz.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ROGoogleTranslate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,6 +262,7 @@
 				7D70CC4920031569002DE42E /* LockUnlockButton.swift in Sources */,
 				7D88EE121FD6C2DA005D3D91 /* Inceptionv3.mlmodel in Sources */,
 				7DE368C31FDA0D300072D23A /* Translation.swift in Sources */,
+				5FA2C733202A3AEF00CDF581 /* Resnet50+Fritz.swift in Sources */,
 				7D8F3F021FD5EE0B00805F40 /* Resnet50.mlmodel in Sources */,
 				7D8F3EEE1FD5CE4C00805F40 /* AppDelegate.swift in Sources */,
 			);
