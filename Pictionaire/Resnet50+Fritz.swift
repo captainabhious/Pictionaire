@@ -10,9 +10,10 @@ import Fritz
 
 extension Resnet50: SwiftIdentifiedModel {
 
-    static let modelIdentifier = "<insert model id>"
+    static let modelIdentifier = "5b8185ccd491423db5e42870f9789ee2"
 
     static let packagedModelVersion = 1
 
-    static let session = Session(appToken: "<insert app token>")
+    static let session = Session(appToken: "8d06e2e624de44dcacc17f340151d40b")
 }
+

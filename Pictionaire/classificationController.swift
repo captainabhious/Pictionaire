@@ -248,7 +248,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         case "Chinese":
             flagLang.image = chinese
             toLang = "zh-CN"
-            predictionLabel.text = "yo"
+           // predictionLabel.text = "yo"
         case "Danish":
             flagLang.image = danish
             toLang = "da"
