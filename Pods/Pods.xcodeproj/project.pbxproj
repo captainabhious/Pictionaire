@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		1783A9B3FEB1D7AF7CBB4C2315549345 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D7E984AA2ED06FC886024282B47207 /* Foundation.framework */; };
 		19BF8004CE53C8887AAF2C869C57F6EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D7E984AA2ED06FC886024282B47207 /* Foundation.framework */; };
-		4A73675DE740247DDF77AE85F53D0D65 /* ROGoogleTranslate-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 60AAE76D3D6BF3F9C676DCECA5B3BCCE /* ROGoogleTranslate-dummy.m */; };
+		4A73675DE740247DDF77AE85F53D0D65 /* ROGoogleTranslate-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 669CA032E0C5C0DF33C3B711644499A1 /* ROGoogleTranslate-dummy.m */; };
 		AD4F978747F2DC91CF802443E85002FE /* Pods-Pictionaire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AA71246D868E737998D4F82EC2D7B3E /* Pods-Pictionaire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B70321A4E56F0DF30DDE053227E29887 /* Pods-Pictionaire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBF65B642888B4D33917A0EBEA17D2 /* Pods-Pictionaire-dummy.m */; };
-		CEA879974CE75F91E14F6DF7BB1959B0 /* ROGoogleTranslate-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 444C4C66AD33EAF6198EA5C3BA0CBA2A /* ROGoogleTranslate-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D58BB7EC36D4155C0A19CB9B2498F26E /* ROGoogleTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB4B288660FE5FB78D0A87C51C3C829 /* ROGoogleTranslate.swift */; };
+		CEA879974CE75F91E14F6DF7BB1959B0 /* ROGoogleTranslate-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A858942E869BB3CABD744A0CF2D7BA87 /* ROGoogleTranslate-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D58BB7EC36D4155C0A19CB9B2498F26E /* ROGoogleTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527839BB52674BE4AC9505CCBFDFC536 /* ROGoogleTranslate.swift */; };
 		E254C93E23C1F38E01A3878394A4466D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2AF9EC704AAD470CAC8FE0D05A5430B /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,24 +30,25 @@
 /* Begin PBXFileReference section */
 		0AA71246D868E737998D4F82EC2D7B3E /* Pods-Pictionaire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Pictionaire-umbrella.h"; sourceTree = "<group>"; };
 		1512F7432897D740DBD16067DF6A2A33 /* Pods-Pictionaire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictionaire.release.xcconfig"; sourceTree = "<group>"; };
-		1FB4B288660FE5FB78D0A87C51C3C829 /* ROGoogleTranslate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ROGoogleTranslate.swift; path = Source/ROGoogleTranslate.swift; sourceTree = "<group>"; };
+		27D1291542E3B1345C8BA4B546B67564 /* ROGoogleTranslate.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ROGoogleTranslate.modulemap; sourceTree = "<group>"; };
 		310266D54340A3887011C5F3EF3215A3 /* Pods-Pictionaire-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Pictionaire-acknowledgements.markdown"; sourceTree = "<group>"; };
+		361FBF8643C83C18F90ECFB2D1AD0765 /* ROGoogleTranslate-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ROGoogleTranslate-prefix.pch"; sourceTree = "<group>"; };
 		3B5613A0D203AE421E148D4DE655A2C5 /* ROGoogleTranslate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ROGoogleTranslate.framework; path = ROGoogleTranslate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		444C4C66AD33EAF6198EA5C3BA0CBA2A /* ROGoogleTranslate-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ROGoogleTranslate-umbrella.h"; sourceTree = "<group>"; };
+		527839BB52674BE4AC9505CCBFDFC536 /* ROGoogleTranslate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ROGoogleTranslate.swift; path = Source/ROGoogleTranslate.swift; sourceTree = "<group>"; };
 		5CC3055223AADCB40D4458FC29F7A589 /* Pods-Pictionaire-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictionaire-frameworks.sh"; sourceTree = "<group>"; };
-		60AAE76D3D6BF3F9C676DCECA5B3BCCE /* ROGoogleTranslate-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ROGoogleTranslate-dummy.m"; sourceTree = "<group>"; };
+		669CA032E0C5C0DF33C3B711644499A1 /* ROGoogleTranslate-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ROGoogleTranslate-dummy.m"; sourceTree = "<group>"; };
+		7822868673C384A237A9A9D12BEB0553 /* Fritz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fritz.framework; path = Framework/Fritz.framework; sourceTree = "<group>"; };
 		7BFBF65B642888B4D33917A0EBEA17D2 /* Pods-Pictionaire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Pictionaire-dummy.m"; sourceTree = "<group>"; };
 		8364F148113AF4A37E487B22D7D02E57 /* Pods-Pictionaire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictionaire.debug.xcconfig"; sourceTree = "<group>"; };
-		8A586ACD6E3A935E9A95A9330BB2FAA2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8FA90D5A8E9292789444FA96263ED764 /* ROGoogleTranslate-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ROGoogleTranslate-prefix.pch"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9768616EDE5375C43C6E548A11C5892C /* Pods-Pictionaire-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictionaire-resources.sh"; sourceTree = "<group>"; };
 		97D7E984AA2ED06FC886024282B47207 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		A858942E869BB3CABD744A0CF2D7BA87 /* ROGoogleTranslate-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ROGoogleTranslate-umbrella.h"; sourceTree = "<group>"; };
 		BA739031D8B69D5881C7C60DC141C832 /* Pods-Pictionaire-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Pictionaire-acknowledgements.plist"; sourceTree = "<group>"; };
 		CE972A1562E89BD4A0D8885AC6A65748 /* Pods-Pictionaire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Pictionaire.modulemap"; sourceTree = "<group>"; };
-		D50595748F6F789F28E18A1F65ED8033 /* ROGoogleTranslate.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ROGoogleTranslate.xcconfig; sourceTree = "<group>"; };
+		CF71AF7F39CD482513767B3E0CAFDD1B /* ROGoogleTranslate.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ROGoogleTranslate.xcconfig; sourceTree = "<group>"; };
+		D7AB703BD49308DF782AAFB806D80B75 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEE135EBD3F894EB33F8BF93A3E5672E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1ED2B173991E04D3F842A80627A6D71 /* ROGoogleTranslate.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ROGoogleTranslate.modulemap; sourceTree = "<group>"; };
 		E7FC5F13530F7F62CEA5ACDAF14B945D /* Pods_Pictionaire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Pictionaire.framework; path = "Pods-Pictionaire.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2AF9EC704AAD470CAC8FE0D05A5430B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -73,22 +74,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2143DD30FBADF103FB9A6B25F05CBAC1 /* Pods */ = {
+		0563C9525A0C3CACCF1C5A5F71798322 /* ROGoogleTranslate */ = {
 			isa = PBXGroup;
 			children = (
-				36770070BC707429009378979F87F3DD /* ROGoogleTranslate */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		36770070BC707429009378979F87F3DD /* ROGoogleTranslate */ = {
-			isa = PBXGroup;
-			children = (
-				1FB4B288660FE5FB78D0A87C51C3C829 /* ROGoogleTranslate.swift */,
-				F16F99D6EB0C07D1ADF4F2B04535DCC8 /* Support Files */,
+				527839BB52674BE4AC9505CCBFDFC536 /* ROGoogleTranslate.swift */,
+				F3EBAB55C82E6BF2E16D0DBFAA70E8A0 /* Support Files */,
 			);
 			name = ROGoogleTranslate;
 			path = ROGoogleTranslate;
+			sourceTree = "<group>";
+		};
+		20440FBF9DBF5262078A912F1021CD53 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D6C2EB963BD2480E37B40FB050AFD899 /* Fritz */,
+				0563C9525A0C3CACCF1C5A5F71798322 /* ROGoogleTranslate */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		3AD2FB4DA4F3F37801063F1455B91534 /* Pods-Pictionaire */ = {
@@ -117,12 +119,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		79C065FA30B5B035C37B8239F7966D05 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7822868673C384A237A9A9D12BEB0553 /* Fritz.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
-				2143DD30FBADF103FB9A6B25F05CBAC1 /* Pods */,
+				20440FBF9DBF5262078A912F1021CD53 /* Pods */,
 				85A886A5810ACEC82D6468CF643B36D7 /* Products */,
 				A4412EC26581E514999C384F438FBBD6 /* Targets Support Files */,
 			);
@@ -145,6 +155,15 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		D6C2EB963BD2480E37B40FB050AFD899 /* Fritz */ = {
+			isa = PBXGroup;
+			children = (
+				79C065FA30B5B035C37B8239F7966D05 /* Frameworks */,
+			);
+			name = Fritz;
+			path = Fritz;
+			sourceTree = "<group>";
+		};
 		E7E283C74B7E79D37D9BAAFF277942F5 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,15 +173,15 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		F16F99D6EB0C07D1ADF4F2B04535DCC8 /* Support Files */ = {
+		F3EBAB55C82E6BF2E16D0DBFAA70E8A0 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				8A586ACD6E3A935E9A95A9330BB2FAA2 /* Info.plist */,
-				E1ED2B173991E04D3F842A80627A6D71 /* ROGoogleTranslate.modulemap */,
-				D50595748F6F789F28E18A1F65ED8033 /* ROGoogleTranslate.xcconfig */,
-				60AAE76D3D6BF3F9C676DCECA5B3BCCE /* ROGoogleTranslate-dummy.m */,
-				8FA90D5A8E9292789444FA96263ED764 /* ROGoogleTranslate-prefix.pch */,
-				444C4C66AD33EAF6198EA5C3BA0CBA2A /* ROGoogleTranslate-umbrella.h */,
+				D7AB703BD49308DF782AAFB806D80B75 /* Info.plist */,
+				27D1291542E3B1345C8BA4B546B67564 /* ROGoogleTranslate.modulemap */,
+				CF71AF7F39CD482513767B3E0CAFDD1B /* ROGoogleTranslate.xcconfig */,
+				669CA032E0C5C0DF33C3B711644499A1 /* ROGoogleTranslate-dummy.m */,
+				361FBF8643C83C18F90ECFB2D1AD0765 /* ROGoogleTranslate-prefix.pch */,
+				A858942E869BB3CABD744A0CF2D7BA87 /* ROGoogleTranslate-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/ROGoogleTranslate";
@@ -339,7 +358,7 @@
 		};
 		210F25EBDB060F78ED3CCAE9C9A9B66B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D50595748F6F789F28E18A1F65ED8033 /* ROGoogleTranslate.xcconfig */;
+			baseConfigurationReference = CF71AF7F39CD482513767B3E0CAFDD1B /* ROGoogleTranslate.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -498,7 +517,7 @@
 		};
 		C1587D49E087F3BA8C3E1990A3AAA061 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D50595748F6F789F28E18A1F65ED8033 /* ROGoogleTranslate.xcconfig */;
+			baseConfigurationReference = CF71AF7F39CD482513767B3E0CAFDD1B /* ROGoogleTranslate.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

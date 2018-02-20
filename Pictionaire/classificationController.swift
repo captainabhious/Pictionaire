@@ -101,7 +101,7 @@ class classificationController: UIViewController, ARSCNViewDelegate, UIPickerVie
         sceneView.scene = scene
         
         // Model Set-Up
-        guard let model = try? VNCoreMLModel(for: Resnet50().model) else {
+        guard let model = try? VNCoreMLModel(for: Resnet50().fritz().model) else {
             fatalError("Error: model could not be loaded.")
         }
         
